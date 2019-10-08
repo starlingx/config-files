@@ -16,18 +16,22 @@ NAME=lighttpd
 DESC="Lighttpd Web Server"
 OPTS="-f /etc/lighttpd/lighttpd.conf"
 PIDFILE="/var/run/$NAME.pid"
-PORT="80"
 
 start()
 {
 
-    if lsof -t -i:${PORT} 1> /dev/null 2>&1; then
-        kill $(lsof -t -i:${PORT}) > /dev/null 2>&1
+    port=$(cat /etc/lighttpd/lighttpd.conf | awk '{if ($1 == "server.port")
+         { print $3; }}')
+    if [ ! -z "$port" ]; then
+        pid=$(lsof -t -i:${port} 2> /dev/null)
+        if [ ! -z "$pid" ]; then
+            kill ${pid} > /dev/null 2>&1
+        fi
     fi
 
     if [ -e $PIDFILE ]; then
-        PIDDIR=/proc/$(cat $PIDFILE)
-        if [ -d ${PIDDIR} ]; then
+        pid=$(pidof $NAME 2> /dev/null)
+        if [ -n "$pid" ]; then
             echo "$DESC already running."
             return
         else
