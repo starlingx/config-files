@@ -50,12 +50,16 @@ chmod 02770 %{buildroot}%{_sysconfdir}/lighttpd
 if [ $1 -eq 1 ] ; then
     cp --preserve=xattr -f %{_datadir}/starlingx/lighttpd.conf %{_sysconfdir}/lighttpd/lighttpd.conf
     chmod 640 %{_sysconfdir}/lighttpd/lighttpd.conf
-    cp --preserve=xattr -f %{_datadir}/starlingx/lighttpd.init %{_sysconfdir}/rc.d/init.d/lighttpd
-    chmod 755 %{_sysconfdir}/rc.d/init.d/lighttpd
     cp --preserve=xattr -f %{_datadir}/starlingx/lighttpd.logrotate %{_sysconfdir}/logrotate.d/lighttpd
     chmod 644 %{_sysconfdir}/logrotate.d/lighttpd
 fi
 
+# /etc/rc.d/init.d/lighttpd is not a config file, so replace it here if it doesn't match
+cmp --quiet %{_datadir}/starlingx/lighttpd.init %{_sysconfdir}/rc.d/init.d/lighttpd
+if [ $? -ne 0 ]; then
+    cp --preserve=xattr -f %{_datadir}/starlingx/lighttpd.init %{_sysconfdir}/rc.d/init.d/lighttpd
+    chmod 755 %{_sysconfdir}/rc.d/init.d/lighttpd
+fi
 
 %files
 %defattr(-,root,root)

@@ -18,6 +18,9 @@ BuildRequires: systemd = 219-62.el7_6.5
 Requires: systemd
 
 %define debug_package %{nil}
+%define local_udev_rules_d %{_sysconfdir}/udev/rules.d
+%define local_tmpfiles_d %{_sysconfdir}/tmpfiles.d
+%define local_systemd_system %{_sysconfdir}/systemd/system
 
 %description
 StarlingX systemd configuration file
@@ -30,31 +33,27 @@ StarlingX systemd configuration file
 
 %install
 install -d %{buildroot}%{_datadir}/starlingx
-install -m644 60-persistent-storage.rules %{buildroot}%{_datadir}/starlingx/60-persistent-storage.rules
+install -d %{buildroot}%{local_udev_rules_d}
+install -d %{buildroot}%{local_tmpfiles_d}
+install -d %{buildroot}%{local_systemd_system}
+
+install -m644 60-persistent-storage.rules %{buildroot}%{local_udev_rules_d}/60-persistent-storage.rules
 install -m644 journald.conf %{buildroot}%{_datadir}/starlingx/journald.conf
-install -m644 systemd.conf.tmpfiles.d %{buildroot}%{_datadir}/starlingx/systemd.conf.tmpfiles.d
-install -m644 tmp.conf.tmpfiles.d %{buildroot}%{_datadir}/starlingx/tmp.conf.tmpfiles.d
-install -m644 tmp.mount %{buildroot}%{_datadir}/starlingx/tmp.mount
+install -m644 systemd.conf.tmpfiles.d %{buildroot}%{local_tmpfiles_d}/systemd.conf
+install -m644 tmp.conf.tmpfiles.d %{buildroot}%{local_tmpfiles_d}/tmp.conf
+install -m644 tmp.mount %{buildroot}%{local_systemd_system}/tmp.mount
 
 %post
 if [ $1 -eq 1 ] ; then
-    cp -f %{_datadir}/starlingx/60-persistent-storage.rules %{_udevrulesdir}/
-    chmod 644 %{_udevrulesdir}/60-persistent-storage.rules
     cp -f %{_datadir}/starlingx/journald.conf %{_sysconfdir}/systemd
     chmod 644 %{_sysconfdir}/systemd/journald.conf
-    cp -f %{_datadir}/starlingx/systemd.conf.tmpfiles.d %{_usr}/lib/tmpfiles.d/systemd.conf
-    chmod 644 %{_usr}/lib/tmpfiles.d/systemd.conf
-    cp -f %{_datadir}/starlingx/tmp.conf.tmpfiles.d %{_usr}/lib/tmpfiles.d/tmp.conf
-    chmod 644 %{_usr}/lib/tmpfiles.d/tmp.conf
-    cp -f %{_datadir}/starlingx/tmp.mount %{_unitdir}/
-    chmod 644 %{_unitdir}/tmp.mount
 fi
 
 %files
 %defattr(-,root,root)
 %license LICENSE
-%{_datadir}/starlingx/60-persistent-storage.rules
+%{local_udev_rules_d}/60-persistent-storage.rules
 %{_datadir}/starlingx/journald.conf
-%{_datadir}/starlingx/systemd.conf.tmpfiles.d
-%{_datadir}/starlingx/tmp.conf.tmpfiles.d
-%{_datadir}/starlingx/tmp.mount
+%{local_tmpfiles_d}/systemd.conf
+%{local_tmpfiles_d}/tmp.conf
+%{local_systemd_system}/tmp.mount

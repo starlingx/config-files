@@ -17,6 +17,7 @@ BuildArch: noarch
 Requires: openldap-servers
 
 %define debug_package %{nil}
+%define local_systemd_system %{_sysconfdir}/systemd/system
 
 %description
 StarlingX openldap configuration file
@@ -28,21 +29,20 @@ StarlingX openldap configuration file
 %build
 
 %install
-mkdir -p %{buildroot}%{_sysconfdir}/rc.d/init.d
+install -d %{buildroot}%{local_systemd_system}
+install -d %{buildroot}%{_sysconfdir}/rc.d/init.d
 install -m 755 initscript %{buildroot}%{_sysconfdir}/rc.d/init.d/openldap
 install -d -m 740 %{buildroot}%{_sysconfdir}/openldap
 install -m 600 slapd.conf %{buildroot}%{_sysconfdir}/openldap/slapd.conf
 install -m 600 initial_config.ldif %{buildroot}%{_sysconfdir}/openldap/initial_config.ldif
 
 install -d %{buildroot}%{_datadir}/starlingx
-install -m 644 slapd.service %{buildroot}%{_datadir}/starlingx/slapd.service
+install -m 644 slapd.service %{buildroot}%{local_systemd_system}/slapd.service
 install -m 644 slapd.sysconfig %{buildroot}%{_datadir}/starlingx/slapd.sysconfig
 
 
 %post
 if [ $1 -eq 1 ] ; then
-    cp -f %{_datadir}/starlingx/slapd.service %{_unitdir}/slapd.service
-    chmod 644 %{_unitdir}/slapd.service
     cp -f %{_datadir}/starlingx/slapd.sysconfig %{_sysconfdir}/sysconfig/slapd
     chmod 644 %{_unitdir}/slapd
 fi
@@ -53,5 +53,5 @@ fi
 %{_sysconfdir}/rc.d/init.d/openldap
 %{_sysconfdir}/openldap/slapd.conf
 %{_sysconfdir}/openldap/initial_config.ldif
-%{_datadir}/starlingx/slapd.service
+%{local_systemd_system}/slapd.service
 %{_datadir}/starlingx/slapd.sysconfig
