@@ -14,7 +14,7 @@ URL: unknown
 Source: %name-%version.tar.gz
 
 BuildArch: noarch
-BuildRequires: systemd = 219-67.el7
+BuildRequires: systemd = 239-13.el8_0.5
 Requires: systemd
 
 %define debug_package %{nil}
