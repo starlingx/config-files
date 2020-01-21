@@ -16,7 +16,8 @@ Source: %name-%version.tar.gz
 BuildArch: noarch
 Requires: audit
 Requires: audit-libs
-Requires: audit-libs-python
+Requires: audit-libs-python3
+Requires: audispd-plugins
 
 %define debug_package %{nil}
 
@@ -35,9 +36,10 @@ install -m640 syslog.conf %{buildroot}%{_datadir}/starlingx/syslog.conf
 
 %post
 if [ $1 -eq 1 ] ; then
-    cp -f %{_datadir}/starlingx/syslog.conf %{_sysconfdir}/audisp/plugins.d/syslog.conf
-    chmod 640 %{_sysconfdir}/audisp/plugins.d/syslog.conf
+    cp -f %{_datadir}/starlingx/syslog.conf %{_sysconfdir}/audit/plugins.d/syslog.conf
+    chmod 640 %{_sysconfdir}/audit/plugins.d/syslog.conf
 fi
+
 
 %files
 %defattr(-,root,root)
