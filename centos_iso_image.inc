@@ -1,4 +1,4 @@
-rabbitmq-server-config
+#rabbitmq-server-config
 
 # centos-release-config
 centos-release-config
@@ -7,12 +7,12 @@ dnsmasq-config
 haproxy-config
 initscripts-config
 lighttpd-config
-net-snmp-config
+#net-snmp-config
 openssh-config
 setup-config
 systemd-config
 audit-config
-docker-config
+#docker-config
 
 # io-scheduler
 io-scheduler
@@ -23,7 +23,7 @@ pam-config
 rsync-config
 shadow-utils-config
 sudo-config
-syslog-ng-config
+#syslog-ng-config
 
 # util-linux-config
 util-linux-config
