@@ -1,5 +1,6 @@
 #! /bin/sh
 # /etc/init.d/snmpd: start snmp daemon.
+# chkconfig: 2345 49 49
 . /etc/init.d/functions
 
 # Linux Standard Base (LSB) Error Codes
