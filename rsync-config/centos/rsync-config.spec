@@ -14,7 +14,7 @@ URL: unknown
 BuildArch: noarch
 Source: %name-%version.tar.gz
 
-Requires: rsync
+Requires: rsync-daemon
 Summary: package StarlingX configuration files of rsync to system folder.
 
 %description
