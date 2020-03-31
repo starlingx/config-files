@@ -25,7 +25,7 @@
 /var/log/horizon.log
 /var/log/snmp-api.log
 /var/log/dcmanager/*.log
-/var/log/dcorch/*.log
+/var/log/dcdbsync/*.log
 /var/log/barbican/barbican-keystone-listener.log
 /var/log/barbican/barbican-worker.log
 {
@@ -39,6 +39,21 @@
         sharedscripts
         postrotate
 		 systemctl reload syslog-ng > /dev/null 2>&1 || true
+        endscript
+}
+
+/var/log/dcorch/*.log
+{
+        nodateext
+        size 20M
+        start 1
+        rotate 20
+        missingok
+        notifempty
+        compress
+        sharedscripts
+        postrotate
+                 systemctl reload syslog-ng > /dev/null 2>&1 || true
         endscript
 }
 
