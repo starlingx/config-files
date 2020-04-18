@@ -11,6 +11,7 @@ setup-config
 systemd-config
 audit-config
 docker-config
+containerd-config
 io-scheduler
 iptables-config
 memcached-custom
