@@ -13,6 +13,7 @@ setup-config
 systemd-config
 audit-config
 #docker-config
+containerd-config
 
 # io-scheduler
 io-scheduler

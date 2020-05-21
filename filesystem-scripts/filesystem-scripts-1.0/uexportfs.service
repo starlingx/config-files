@@ -1,5 +1,5 @@
 [Unit]
-Description=Titanium Cloud Filesystem Initialization
+Description=StarlingX Filesystem Initialization
 After=network.target nfscommon.service
 
 [Service]
