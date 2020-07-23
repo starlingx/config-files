@@ -35,6 +35,8 @@ RETVAL=0
 case "$1" in
   start)
     echo -n "Starting SLAPD: "
+    # Bump up the open file limit for created daemons
+    ulimit -n 4096
     if [ -f /etc/openldap/schema/cn=config.ldif ]; then
         start-stop-daemon --start --oknodo --quiet --exec $slapd \
             -- -F /etc/openldap/schema/
