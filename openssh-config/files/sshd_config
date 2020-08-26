@@ -55,13 +55,13 @@ AuthorizedKeysFile     .ssh/authorized_keys
 #HostbasedAuthentication no
 # Change to yes if you don't trust ~/.ssh/known_hosts for
 # HostbasedAuthentication
-#IgnoreUserKnownHosts no
+IgnoreUserKnownHosts yes
 # Don't read the user's ~/.rhosts and ~/.shosts files
 #IgnoreRhosts yes
 
 # To disable tunneled clear text passwords, change to no here!
 #PasswordAuthentication yes
-#PermitEmptyPasswords no
+PermitEmptyPasswords no
 PasswordAuthentication yes
 
 # Change to no to disable s/key passwords
@@ -103,11 +103,11 @@ X11Forwarding no
 #X11UseLocalhost yes
 #PermitTTY yes
 #PrintMotd yes
-#PrintLastLog yes
+PrintLastLog yes
 #TCPKeepAlive yes
 #UseLogin no
-UsePrivilegeSeparation yes
-#PermitUserEnvironment no
+UsePrivilegeSeparation sandbox
+PermitUserEnvironment no
 Compression no
 ClientAliveInterval 15
 ClientAliveCountMax 4
