@@ -302,6 +302,10 @@ rabbit_start() {
         return $OCF_SUCCESS
     fi
 
+    # Call rabbit_stop, just in case something's still running
+    ocf_log info "Calling rabbit_stop ahead of rabbit_start"
+    rabbit_stop
+
     export_vars
 
     # Increase the maximum number of file descriptors that can be open at
@@ -346,7 +350,12 @@ rabbit_stop() {
 
     if ! rabbit_status; then
         ocf_log info "Resource not running."
-        return $OCF_SUCCESS
+
+        # On rare occasions, the status check could indicate rabbitmq is not running,
+        # but there could be partial service. As such, ignore this case and just fall
+        # through to continue with the stop
+        #
+        # return $OCF_SUCCESS
     fi
 
     $RABBITMQ_CTL stop
