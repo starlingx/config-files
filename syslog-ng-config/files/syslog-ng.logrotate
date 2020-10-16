@@ -4,7 +4,9 @@
 /var/log/auth.log
 /var/log/cron.log
 /var/log/cert-mon.log
+/var/log/daemon.log
 /var/log/daemon-ocf.log
+/var/log/containerd.log
 /var/log/kern.log
 /var/log/lpr.log
 /var/log/mail.log
@@ -103,20 +105,5 @@
         lastaction
                 service syslog-ng reload > /dev/null 2>&1 || true
                 /usr/bin/logmgmt_postrotate  > /dev/null 2>&1 || true
-        endscript
-}
-
-/var/log/daemon.log
-{
-        nodateext
-        size 70M
-        start 1
-        rotate 20
-        missingok
-        notifempty
-        compress
-        sharedscripts
-        postrotate
-                 systemctl reload syslog-ng > /dev/null 2>&1 || true
         endscript
 }
