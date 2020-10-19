@@ -14,6 +14,7 @@ systemd-config
 audit-config
 docker-config
 containerd-config
+multus-config
 
 # io-scheduler
 io-scheduler
