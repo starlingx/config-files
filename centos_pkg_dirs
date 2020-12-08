@@ -31,3 +31,4 @@ mlx4-config
 openvswitch-config
 multus-config
 tuned-config
+dmesg-config

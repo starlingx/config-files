@@ -16,6 +16,7 @@ docker-config
 containerd-config
 multus-config
 tuned-config
+dmesg-config
 
 # io-scheduler
 io-scheduler
