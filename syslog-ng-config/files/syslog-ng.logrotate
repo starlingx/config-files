@@ -24,7 +24,6 @@
 /var/log/nfv-vim-webserver.log
 /var/log/keystone/*.log
 /var/log/horizon.log
-/var/log/snmp-api.log
 /var/log/barbican/barbican-keystone-listener.log
 /var/log/barbican/barbican-worker.log
 {
