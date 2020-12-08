@@ -15,6 +15,7 @@ audit-config
 docker-config
 containerd-config
 multus-config
+tuned-config
 
 # io-scheduler
 io-scheduler
