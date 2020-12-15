@@ -1,0 +1,17 @@
+#
+# Copyright (c) 2020 Wind River Systems, Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+/var/log/multus.log
+{
+    nodateext
+    size 100M
+    start 1
+    missingok
+    rotate 20
+    compress
+    sharedscripts
+    copytruncate
+}

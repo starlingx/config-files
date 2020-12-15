@@ -29,3 +29,6 @@ openldap-config
 logrotate-config
 mlx4-config
 openvswitch-config
+multus-config
+tuned-config
+dmesg-config
