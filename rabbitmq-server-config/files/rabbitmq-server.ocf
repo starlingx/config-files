@@ -284,7 +284,7 @@ rabbitmqctl_action() {
             ocf_log debug "RabbitMQ server is running normally"
             return $OCF_SUCCESS
             ;;
-        2)
+        1|2|69)
             ocf_log debug "RabbitMQ server is not running"
             return $OCF_NOT_RUNNING
             ;;
@@ -358,10 +358,10 @@ rabbit_stop() {
         # return $OCF_SUCCESS
     fi
 
-    $RABBITMQ_CTL stop
+    rabbitmqctl_action stop
     rc=$?
 
-    if [ "$rc" != 0 ]; then
+    if [ "$rc" != 0 ] && [ "$rc" != $OCF_NOT_RUNNING ]; then
         ocf_log err "rabbitmq-server stop command failed: $RABBITMQ_CTL stop, $rc"
         return $rc
     fi

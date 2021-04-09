@@ -1,4 +1,4 @@
-#rabbitmq-server-config
+rabbitmq-server-config
 
 # centos-release-config
 centos-release-config
