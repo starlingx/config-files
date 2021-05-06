@@ -1,5 +1,8 @@
 # This file contains the rules to customize io scheduler.
 
+# Need nodetype environment variable
+IMPORT{file}="/etc/platform/platform.conf"
+
 # Heuristics:
 # 'deadline' io-scheduler tuned settings
 # - deadline generally recommended for databases, servers, and SSDs,
@@ -10,19 +13,41 @@
 #     read_expire:   150 (from 500)
 #     write_expire: 1500 (from 5000)
 #
+# 'cfq' io scheduler tuned settings
+# - recommended for HDD, and fairness (ionice)
+# - the following tuned values greatly improve parallelism,
+#   and performance in large storage environments
+#     slice_idle: 0 (from 8)
+#     quantum:   32 (from 8)
+#
 # 'noop' io scheduler for variants of HW-RAID.
 # - RAID controller will do its own separate scheduling
 #
 # Overall:
+# - Historically we choose 'deadline' for low-latency, SSDs, and local storage;
+#   'cfq' for worker non-sda HDDs, 'noop' for all variants of HW-RAID.
 # - We prefer to guarantee latency more than fairness for all platform services,
 #   especially under extreme read and write load, e.g, when creating/deleting
 #   multiple heat stacks, or running disk intensive operations.
+# - Kubernetes etcd server has better latency with cfq as compared
+#   to deadline even on SSDs.
+# - This setting requires re-evaluation with io-schedulers
+#   (i.e., mq-deadline, bfq, kyber) available in new kernels.
 
-ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTR{queue/scheduler}="deadline"
-ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTR{queue/iosched/front_merges}="0"
-ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTR{queue/iosched/read_expire}="150"
-ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTR{queue/iosched/write_expire}="1500"
+ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", \
+    ATTR{queue/scheduler}="deadline", \
+    ATTR{queue/iosched/front_merges}="0", \
+    ATTR{queue/iosched/read_expire}="150", \
+    ATTR{queue/iosched/write_expire}="1500"
+
+ACTION=="add|change", ENV{nodetype}=="controller", SUBSYSTEM=="block", KERNEL=="sd[a-z]", \
+    PROGRAM="/usr/local/bin/is-rootdisk-device.sh %E{DEVNAME}", RESULT=="?*", \
+    ATTR{queue/scheduler}="cfq", \
+    ATTR{queue/iosched/slice_idle}="0", \
+    ATTR{queue/iosched/quantum}="32"
 
 # Set noop io scheduler for variants of HW-RAID.
 # HP ProLiant DL360p Gen8; HP ProLiant DL380p Gen8
 ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTRS{raid_level}=="*RAID*", ATTR{queue/scheduler}="noop"
+# Dell Inc. PowerEdge R720
+ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTRS{label}=="*RAID*", ATTR{queue/scheduler}="noop"
