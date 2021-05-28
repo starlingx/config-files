@@ -7,7 +7,6 @@ dnsmasq-config
 haproxy-config
 initscripts-config
 lighttpd-config
-net-snmp-config
 openssh-config
 setup-config
 systemd-config
