@@ -1,0 +1,49 @@
+#!/usr/bin/python3
+#
+# Copyrights (c) 2021 Wind River Systems, Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# We assume that we are being called because of a command option in
+# ssh authorized_keys for whoever we are.  Where the log goes depends
+# on the configuration of syslog.
+
+# replace bash
+#
+# logger --id=$$ -p user.info SSHLOG: $SHELL \"${SSH_ORIGINAL_COMMAND}\"
+#
+# exec $SHELL -c "${SSH_ORIGINAL_COMMAND}"
+
+import os
+
+try:
+  shell = os.environ['SHELL']
+except:
+  shell = "/bin/sh"
+
+# Do not log interactive session
+#
+try:
+  cmd = os.environ['SSH_ORIGINAL_COMMAND']
+except:
+  os.execl(shell, shell)
+
+import syslog, pwd
+
+try:
+  user = pwd.getpwuid(os.getuid())[0]
+except:
+  user = "unknown"
+
+try:
+  msg = "user=%s cmd='%s'" % (user,cmd)
+  syslog.syslog(syslog.LOG_USER | syslog.LOG_DEBUG, msg)
+except:
+  pass
+
+# execute cmd
+#
+os.execl(shell, shell, "-c", cmd)
+
+

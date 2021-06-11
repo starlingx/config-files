@@ -35,8 +35,11 @@ install -d %{buildroot}%{_datadir}/starlingx
 install -D -m644 syslog-ng.conf %{buildroot}%{_datadir}/starlingx/syslog-ng.conf
 install -D -m644 syslog-ng.logrotate %{buildroot}%{_datadir}/starlingx/syslog-ng.logrotate
 install -D -m644 remotelogging.conf %{buildroot}%{_sysconfdir}/syslog-ng/remotelogging.conf
+
 install -d %{buildroot}%{_sbindir}
 install -D -m700 fm_event_syslogger %{buildroot}%{_sbindir}/fm_event_syslogger
+install -D -m755 sshlog %{buildroot}%{_sbindir}/sshlog
+
 install -D -m644 syslog-ng.service %{buildroot}%{_datadir}/starlingx/syslog-ng.service
 
 %post
@@ -67,3 +70,4 @@ ldconfig
 %{_datadir}/starlingx/syslog-ng.logrotate
 %{_datadir}/starlingx/syslog-ng.service
 %{_sbindir}/fm_event_syslogger
+%{_sbindir}/sshlog

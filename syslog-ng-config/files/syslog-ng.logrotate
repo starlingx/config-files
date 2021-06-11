@@ -87,6 +87,7 @@
 }
 
 /var/log/bash.log
+/var/log/sshlog.log
 {
         nodateext
         size 100M
