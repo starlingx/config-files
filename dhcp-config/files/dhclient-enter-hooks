@@ -17,7 +17,7 @@ source /etc/platform/platform.conf
 if [ -n "$wrs_install_uuid" ]; then
   if [ "$nodetype" == "controller" ]; then
     source /etc/build.info
-    file="/www/pages/feed/rel-$SW_VERSION/install_uuid"
+    file="/var/www/pages/feed/rel-$SW_VERSION/install_uuid"
     INSTALL_UUID=$(cat "$file")
   fi
   if [ "$INSTALL_UUID" != "$wrs_install_uuid" ]; then

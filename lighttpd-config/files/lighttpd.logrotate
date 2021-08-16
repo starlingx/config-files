@@ -1,7 +1,7 @@
 /var/log/lighttpd-access.log
 /var/log/lighttpd-error.log
-/www/var/log/lighttpd-access.log
-/www/var/log/lighttpd-error.log {
+/var/www/var/log/lighttpd-access.log
+/var/www/var/log/lighttpd-error.log {
         nodateext
         size 10M
         start 1

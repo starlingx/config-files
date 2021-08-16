@@ -30,7 +30,7 @@ StarlingX lighttpd configuration file
 %install
 
 CONFDIR=%{buildroot}%{_sysconfdir}/lighttpd
-ROOTDIR=%{buildroot}/www
+ROOTDIR=%{buildroot}/var/www
 
 install -d -m 1777 ${ROOTDIR}/tmp
 install -d ${CONFDIR}/ssl
@@ -67,7 +67,7 @@ fi
 %{_datadir}/starlingx/lighttpd.conf
 %{_datadir}/starlingx/lighttpd.logrotate
 %{_datadir}/starlingx/lighttpd.init
-%dir /www/pages/
-/www/pages/*
+%dir /var/www/pages/
+/var/www/pages/*
 %config(noreplace) %{_sysconfdir}/lighttpd/lighttpd-inc.conf
-/www/pages/index.html
+/var/www/pages/index.html
