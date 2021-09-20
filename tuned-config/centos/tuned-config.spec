@@ -23,9 +23,15 @@ StarlingX tuned configuration file
 %install
 install -d -m 755 %{buildroot}%{_sysconfdir}/systemd/system/tuned.service.d/
 install -p -m 644 tuned-stx-override.conf %{buildroot}%{_sysconfdir}/systemd/system/tuned.service.d/
+install -d -m 755 %{buildroot}%{_sysconfdir}/tuned/starlingx/
+install -p -m 644 tuned.conf %{buildroot}%{_sysconfdir}/tuned/starlingx/
+install -p -m 644 recommend.conf %{buildroot}%{_sysconfdir}/tuned/
 
 %files
 %defattr(-,root,root)
 %license LICENSE
 %dir %{_sysconfdir}/systemd/system/tuned.service.d
 %{_sysconfdir}/systemd/system/tuned.service.d/tuned-stx-override.conf
+%dir %{_sysconfdir}/tuned/starlingx
+%config %{_sysconfdir}/tuned/starlingx/tuned.conf
+%config(noreplace) %{_sysconfdir}/tuned/recommend.conf
