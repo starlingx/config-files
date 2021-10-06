@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+cp /usr/share/starlingx/system-auth.pamd /etc/pam.d/system-auth
+cp /usr/share/starlingx/sshd.pam /etc/pam.d/sshd
+
+#DEBHELPER#

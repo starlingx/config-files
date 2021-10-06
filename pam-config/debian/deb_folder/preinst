@@ -1,0 +1,25 @@
+#!/bin/sh
+
+set -e
+
+dpkg-divert --add --package pam-config --rename \
+    --divert /etc/pam.d/common-auth.old \
+    /etc/pam.d/common-auth
+
+dpkg-divert --add --package pam-config --rename \
+    --divert /etc/pam.d/common-password.old \
+    /etc/pam.d/common-password
+
+dpkg-divert --add --package pam-config --rename \
+    --divert /etc/pam.d/common-session.old \
+    /etc/pam.d/common-session
+
+dpkg-divert --add --package pam-config --rename \
+    --divert /etc/pam.d/common-session-noninteractive.old \
+    /etc/pam.d/common-session-noninteractive
+
+dpkg-divert --add --package pam-config --rename \
+    --divert /etc/pam.d/common-account.old \
+    /etc/pam.d/common-account
+
+#DEBHELPER#
