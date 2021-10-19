@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+cp /usr/share/starlingx/ntp.conf /etc/ntp.conf
+cp /usr/share/starlingx/ntpd.sysconfig /etc/default/ntp
+
+chmod 644 /etc/ntp.conf
+chmod 644 /etc/default/ntp
+
+#DEBHELPER#

@@ -1,0 +1,17 @@
+Source: ntp-config
+Section: admin
+Priority: optional
+Maintainer: Starlingx Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: ntp-config
+Architecture: all
+Depends:
+  ${misc:Depends},
+  libnet-ntp-perl,
+  ntp,
+  ntpdate
+Description: StarlingX ntp Configuration File
+ Initalizes file ntp.conf with default value and adds options for ntpd.
