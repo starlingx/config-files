@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+cp /usr/share/starlingx/dnsmasq/init /etc/init.d/dnsmasq
+
+chmod 755 /etc/init.d/dnsmasq
+
+#DEBHELPER#

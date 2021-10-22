@@ -1,0 +1,5 @@
+dnsmasq-config (1.0-1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- Matheus Guilhermino <matheus.machadoguilhermino@windriver.com>  Fri, 22 Oct 2021 01:29:29 -0400
