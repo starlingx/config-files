@@ -1,0 +1,5 @@
+memcached-custom (1.0-1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- Matheus Guilhermino <matheus.machadoguilhermino@windriver.com>  Fri, 22 Oct 2021 04:11:29 -0400
