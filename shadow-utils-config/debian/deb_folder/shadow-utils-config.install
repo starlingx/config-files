@@ -1,0 +1,2 @@
+clear_shadow_locks.service usr/lib/systemd/system
+login.defs usr/share/starlingx
