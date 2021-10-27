@@ -1,0 +1,14 @@
+Source: util-linux-config
+Section: admin
+Priority: optional
+Maintainer: Starlingx Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: util-linux-config
+Architecture: all
+Pre-Depends: pam-config, shadow-utils-config
+Depends: ${misc:Depends}
+Description: Package StarlingX configuration files of util-linux to system folder.
+ Installs login preferences to the pam.d directory.

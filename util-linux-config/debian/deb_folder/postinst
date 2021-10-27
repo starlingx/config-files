@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+cp /usr/share/starlingx/stx.su /etc/pam.d/su
+cp /usr/share/starlingx/stx.login /etc/pam.d/login
+cp /usr/share/starlingx/stx.postlogin /etc/pam.d/postlogin
+
+chmod 644 /etc/pam.d/su
+chmod 644 /etc/pam.d/login
+chmod 644 /etc/pam.d/postlogin
+
+#DEBHELPER#

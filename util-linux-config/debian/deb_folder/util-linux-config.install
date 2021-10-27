@@ -1,0 +1,3 @@
+stx.su usr/share/starlingx
+stx.login usr/share/starlingx
+stx.postlogin usr/share/starlingx
