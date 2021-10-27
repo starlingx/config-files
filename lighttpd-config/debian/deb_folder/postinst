@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+mv /var/www/pages/index.html.lighttpd /var/www/pages/index.html
+
+chmod 640 /usr/share/starlingx/lighttpd.conf
+chmod 755 /usr/share/starlingx/lighttpd.init
+chmod 644 /usr/share/starlingx/lighttpd-inc.conf
+chmod 644 /var/www/pages/index.html
+
+cp /usr/share/starlingx/lighttpd.conf /etc/lighttpd/lighttpd.conf
+cp /usr/share/starlingx/lighttpd.logrotate /etc/logrotate.d/lighttpd
+cp /usr/share/starlingx/lighttpd-inc.conf /etc/lighttpd/lighttpd-inc.conf
+
+chmod 640 /etc/lighttpd/lighttpd.conf
+chmod 644 /etc/logrotate.d/lighttpd
+
+cp --preserve=xattr /usr/share/starlingx/lighttpd.init /etc/init.d/lighttpd
+chmod 755 /etc/init.d/lighttpd
+
+#DEBHELPER#

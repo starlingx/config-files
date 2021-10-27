@@ -1,0 +1,13 @@
+Source: lighttpd-config
+Section: admin
+Priority: optional
+Maintainer: Starlingx Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: lighttpd-config
+Architecture: all
+Depends: ${misc:Depends}, lighttpd, logrotate
+Description: StarlingX lighttpd configuration file.
+ Installs StarlingX's default lighttpd configuration files.

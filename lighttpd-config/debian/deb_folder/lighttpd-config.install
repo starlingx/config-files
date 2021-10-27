@@ -1,0 +1,5 @@
+lighttpd.conf usr/share/starlingx
+lighttpd.init usr/share/starlingx
+lighttpd-inc.conf usr/share/starlingx
+index.html.lighttpd var/www/pages
+lighttpd.logrotate usr/share/starlingx
