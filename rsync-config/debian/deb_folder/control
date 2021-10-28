@@ -1,0 +1,13 @@
+Source: rsync-config
+Section: admin
+Priority: optional
+Maintainer: Starlingx Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: rsync-config
+Architecture: all
+Depends: ${misc:Depends}, rsync
+Description: Package StarlingX configuration files of rsync to system folder
+ Installs rsyncd.conf to /etc folder in order to enable local rsync server.

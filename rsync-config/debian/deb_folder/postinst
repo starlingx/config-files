@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+cp /usr/share/starlingx/rsyncd.conf /etc/rsyncd.conf
+
+chmod 644 /usr/share/starlingx/rsyncd.conf
+chmod 644 /etc/rsyncd.conf
+
+#DEBHELPER#
