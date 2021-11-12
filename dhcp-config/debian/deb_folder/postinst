@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+cp /usr/share/starlingx/dhclient.conf /etc/dhcp/dhclient.conf
+chmod 0755 /etc/dhcp/dhclient-enter-hooks
+
+#DEBHELPER#

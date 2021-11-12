@@ -1,0 +1,13 @@
+Source: dhcp-config
+Section: admin
+Priority: optional
+Maintainer: StarlingX Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: dhcp-config
+Architecture: any
+Depends: ${misc:Depends}, isc-dhcp-client
+Description: StarlingX configuration files - dhcp-config
+ Package of dhcp-config to system folder.
