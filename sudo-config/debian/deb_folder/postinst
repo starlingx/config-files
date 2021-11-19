@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+cp /usr/share/starlingx/sysadmin.sudo /etc/sudoers.d/sysadmin
+
+chmod 440 /etc/sudoers.d/sysadmin
+
+#DEBHELPER#
