@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+chmod 0755 /usr/lib/ocf/resource.d/rabbitmq/stx.rabbitmq-server
+
+cp /usr/share/starlingx/stx.rabbitmq-server.logrotate /etc/logrotate.d/rabbitmq-server
+
+#DEBHELPER#

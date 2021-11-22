@@ -1,0 +1,5 @@
+rabbitmq-server-config (1.0-1) unstable; urgency=medium
+
+  * Initial release
+
+ -- Iago Regiani <Iago.RodriguezRegiani@windriver.com>  Thu, 21 Oct 2021 11:24:58 -0300
