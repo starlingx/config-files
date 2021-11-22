@@ -1,0 +1,16 @@
+Source: syslog-ng-config
+Section: admin
+Priority: optional
+Maintainer: StarlingX Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: syslog-ng-config
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends},
+ systemd,
+ syslog-ng,
+ logrotate
+Description: StarlingX configuration files - syslog-ng-config
+ Package of syslog-ng-config to system folder.
