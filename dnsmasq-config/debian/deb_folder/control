@@ -1,0 +1,13 @@
+Source: dnsmasq-config
+Section: admin
+Priority: optional
+Maintainer: Starlingx Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: dnsmasq-config
+Architecture: all
+Depends: ${misc:Depends}, dnsmasq
+Description: packages StarlingX configuration files of dnsmasq to system folder
+ Installs dnsmasq init options to init.d directory.
