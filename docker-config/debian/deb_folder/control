@@ -1,0 +1,13 @@
+Source: docker-config
+Section: admin
+Priority: optional
+Maintainer: Starlingx Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: docker-config
+Architecture: all
+Depends: ${misc:Depends}, docker.io, mtce-pmon
+Description: StarlingX docker configuration file
+ This package contains configurations for docker package.
