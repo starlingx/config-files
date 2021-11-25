@@ -1,0 +1,13 @@
+Source: shadow-utils-config
+Section: admin
+Priority: optional
+Maintainer: Starlingx Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: shadow-utils-config
+Architecture: all
+Depends: ${misc:Depends}
+Description: StarlingX shadow-utils configuration file
+ This package contains configurations for shadow-utils package.
