@@ -1,0 +1,8 @@
+syslog-ng.conf  usr/share/starlingx
+syslog-ng.logrotate usr/share/starlingx
+remotelogging.conf etc/syslog-ng
+
+fm_event_syslogger usr/sbin
+sshlog usr/sbin
+
+syslog-ng.service usr/share/starlingx

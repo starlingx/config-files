@@ -1,0 +1,5 @@
+syslog-ng-config (1.0-1) unstable; urgency=medium
+
+  * Initial release
+
+ -- Iago Regiani <Iago.RodriguezRegiani@windriver.com>  Wed, 27 Oct 2021 10:21:58 -0300
