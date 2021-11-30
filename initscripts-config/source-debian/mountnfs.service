@@ -1,0 +1,13 @@
+[Unit]
+Description=StarlingX Cloud Filesystem Auto-mounter
+After=network.target nfscommon.service
+Before=uexportfs.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/etc/network/if-up.d/mountnfs start
+ExecStop=/etc/network/if-up.d/mountnfs stop
+
+[Install]
+WantedBy=multi-user.target
