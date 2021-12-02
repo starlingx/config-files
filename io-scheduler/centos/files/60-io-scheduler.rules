@@ -80,7 +80,7 @@ ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", \
 ACTION=="add|change", ENV{nodetype}=="controller", SUBSYSTEM=="block", KERNEL=="sd[a-z]", \
     PROGRAM="/usr/local/bin/is-rootdisk-device.sh %E{DEVNAME}", RESULT=="?*", \
     ATTR{queue/scheduler}="bfq", \
-    ATTR{queue/iosched/slice_idle}="0"
+    ATTR{queue/iosched/strict_guarantees}="1"
 
 # Set none io scheduler for variants of HW-RAID.
 # HP ProLiant DL360p Gen8; HP ProLiant DL380p Gen8
