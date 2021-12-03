@@ -6,6 +6,12 @@
 #
 . /etc/init.d/functions
 
+PID_FILE='/var/run/slapd.pid'
+MAX_FD_COUNT=4096
+ALARM_THRESHOLD=3891  # 95 % MAX
+EXIT_APPROACH_LIMIT=160
+EXIT_LIMIT_REACHED=161
+
 ################################################################################
 # Wait for a process to stop running.
 #
@@ -27,6 +33,7 @@ function wait_for_proc_stop()
     return 1
 }
 
+
 slapd=/usr/sbin/slapd
 test -x "$slapd" || exit 0
 
@@ -36,7 +43,7 @@ case "$1" in
   start)
     echo -n "Starting SLAPD: "
     # Bump up the open file limit for created daemons
-    ulimit -n 4096
+    ulimit -n $MAX_FD_COUNT
     if [ -f /etc/openldap/schema/cn=config.ldif ]; then
         start-stop-daemon --start --oknodo --quiet --exec $slapd \
             -- -F /etc/openldap/schema/
@@ -81,7 +88,7 @@ case "$1" in
       wait_for_proc_stop $slapd 10
       WRETVAL=$?
     done
-    rm -f /var/run/slapd.pid
+    rm -f '$PID_FILE'
     echo "."
     ;;
   status)
@@ -89,6 +96,11 @@ case "$1" in
     [ $? -eq 0 ] || exit $?
     systemctl status nscd.service
     [ $? -eq 0 ] || exit $?
+    PID=`cat $PID_FILE`
+    FD_PATH="/proc/$PID/fd/"
+    FD_CNT=`ls $FD_PATH -l | wc -l`
+    [ "$FD_CNT" -lt "$MAX_FD_COUNT" ] || exit $EXIT_LIMIT_REACHED
+    [ "$FD_CNT" -lt "$ALARM_THRESHOLD" ] || exit $EXIT_APPROACH_LIMIT
     ;;
   restart)
     $0 stop
