@@ -1,0 +1,5 @@
+lighttpd-config (1.0-1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- Matheus Guilhermino <matheus.machadoguilhermino@windriver.com>  Wed, 27 Oct 2021 02:43:29 -0400
