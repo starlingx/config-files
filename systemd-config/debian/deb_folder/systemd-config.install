@@ -1,0 +1,5 @@
+60-persistent-storage.rules usr/lib/udev/rules.d
+journald.conf usr/share/starlingx
+systemd.conf etc/tmpfiles.d
+tmp.conf etc/tmpfiles.d
+tmp.mount etc/systemd/system
