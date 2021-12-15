@@ -1,0 +1,8 @@
+common-auth /etc/pam.d
+common-password /etc/pam.d
+common-session /etc/pam.d
+common-session-noninteractive /etc/pam.d
+common-account /etc/pam.d
+
+system-auth.pamd /usr/share/starlingx
+sshd.pam /usr/share/starlingx
