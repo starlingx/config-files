@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+dpkg-divert --add --package dhcp-config --rename \
+    --divert /etc/dhcp/dhclient.conf.old \
+    /etc/dhcp/dhclient.conf
+
+#DEBHELPER#

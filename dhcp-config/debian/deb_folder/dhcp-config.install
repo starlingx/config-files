@@ -1,0 +1,2 @@
+dhclient.conf /usr/share/starlingx
+dhclient-enter-hooks /etc/dhcp/
