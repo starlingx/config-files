@@ -1,5 +1,6 @@
 dnsmasq-config
 docker-config
+lighttpd-config
 openldap-config
 rabbitmq-server-config
 rsync-config
