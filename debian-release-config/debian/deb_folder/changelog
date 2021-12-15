@@ -1,0 +1,5 @@
+debian-release-config (1.0-1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- Charles Short <charles.short@windriver.com>  Fri, 11 Dec 2021 02:08:29 -0400

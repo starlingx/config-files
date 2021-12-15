@@ -1,0 +1,13 @@
+Source: debian-release-config
+Section: admin
+Priority: optional
+Maintainer: Starlingx Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: debian-release-config
+Architecture: all
+Depends: ${misc:Depends}
+Description: StarlingX banner files
+ Installs banner files for remote and local login.
