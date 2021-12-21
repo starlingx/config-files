@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+cp  /usr/share/starlingx/sysctl.conf /etc/sysctl.conf
+chmod 644 /etc/sysctl.conf
+cp  /usr/share/starlingx/mountnfs.sh /etc/init.d/mountnfs.sh
+chmod 644 /etc/init.d/mountnfs.sh
+cp  /usr/share/starlingx/nsswitch.conf /etc/nsswitch.conf
+chmod 644 /etc/nsswitch.conf
+
+systemctl unmask mountnfs.service
+cp  /usr/share/starlingx/mountnfs.service /etc/systemd/system/mountnfs.service
+systemctl enable mountnfs.service > /dev/null 2>&1 || :
+
+#DEBHELPER#
