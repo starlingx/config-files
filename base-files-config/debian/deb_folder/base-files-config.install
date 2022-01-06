@@ -1,0 +1,3 @@
+motd /usr/share/starlingx/
+prompt.sh /etc/profile.d/
+custom.sh /etc/profile.d/
