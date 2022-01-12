@@ -1,0 +1,5 @@
+ntp-config (1.0-1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- Matheus Guilhermino <matheus.machadoguilhermino@windriver.com>  Fri, 01 Oct 2021 05:08:29 -0400
