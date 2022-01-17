@@ -1,0 +1,18 @@
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+# Copyright (C) 2021 Wind River Systems, Inc.
+#
+
+Source: base-files-config
+Section: admin
+Priority: optional
+Maintainer: StarlingX Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: base-files-config
+Architecture: any
+#Depends: ${misc:Depends}, ${shlibs:Depends}, base-files
+Description: Package StarlingX configuration of base-files to system folder.

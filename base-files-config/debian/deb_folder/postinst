@@ -1,0 +1,6 @@
+#!/bin/sh
+
+mv /usr/share/starlingx/motd /usr/share/starlingx/stx.motd
+cp /usr/share/starlingx/stx.motd /etc/motd
+
+#DEBHELPER#
