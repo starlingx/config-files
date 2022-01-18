@@ -39,6 +39,7 @@ install -d %{buildroot}%{local_systemd_system}
 
 install -m644 60-persistent-storage.rules %{buildroot}%{local_udev_rules_d}/60-persistent-storage.rules
 install -m644 journald.conf %{buildroot}%{_datadir}/starlingx/journald.conf
+install -m644 kubernetes.conf.tmpfiles.d %{buildroot}%{local_tmpfiles_d}/kubernetes.conf
 install -m644 systemd.conf.tmpfiles.d %{buildroot}%{local_tmpfiles_d}/systemd.conf
 install -m644 tmp.conf.tmpfiles.d %{buildroot}%{local_tmpfiles_d}/tmp.conf
 install -m644 tmp.mount %{buildroot}%{local_systemd_system}/tmp.mount
@@ -54,6 +55,7 @@ fi
 %license LICENSE
 %{local_udev_rules_d}/60-persistent-storage.rules
 %{_datadir}/starlingx/journald.conf
+%{local_tmpfiles_d}/kubernetes.conf
 %{local_tmpfiles_d}/systemd.conf
 %{local_tmpfiles_d}/tmp.conf
 %{local_systemd_system}/tmp.mount

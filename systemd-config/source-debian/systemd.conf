@@ -40,3 +40,5 @@ a+ /var/log/journal/%m/system.journal - - - - group:sys_protected:r--,group:whee
 
 d /var/lib/systemd 0755 root root -
 d /var/lib/systemd/coredump 0755 root root 3d
+
+e /var/lib/puppet/reports/* 0755 root root 30d
