@@ -1,0 +1,5 @@
+#!/bin/sh
+
+mv /etc/pmon.d/containerd-pmon.conf /etc/pmon.d/containerd.conf
+
+#DEBHELPER#

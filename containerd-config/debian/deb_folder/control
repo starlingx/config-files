@@ -1,0 +1,14 @@
+Source: containerd-config
+Section: admin
+Priority: optional
+Maintainer: StarlingX Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: containerd-config
+Architecture: any
+Pre-Depends: mtce-pmon
+Depends: ${misc:Depends}, ${shlibs:Depends}, containerd
+Description: Package StarlingX configuration files of containerd to system folder.
+ This package configures the containerd service
