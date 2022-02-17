@@ -9,7 +9,7 @@
 # Note: When PAM is used, some modules may enfore a minimal delay (e.g.
 #       pam_unix enforces a 2s delay)
 #
-FAIL_DELAY		3
+#FAIL_DELAY		3
 
 #
 # Enable logging and display of /var/log/faillog login failure info.
