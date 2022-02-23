@@ -2,7 +2,7 @@
 
 set -e
 
-cp /usr/share/starlingx/openldap/initscript /etc/init.d/slapd
+cp /usr/share/starlingx/openldap/initscript /etc/init.d/openldap
 cp /usr/share/starlingx/openldap/slapd.conf /etc/ldap/slapd.conf
 cp /usr/share/starlingx/openldap/initial_config.ldif /etc/ldap/initial_config.ldif
 cp /usr/share/starlingx/openldap/slapd.syslog-ng.conf /etc/syslog-ng/conf.d/slapd.conf

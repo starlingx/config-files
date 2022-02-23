@@ -27,6 +27,7 @@ function wait_for_proc_stop()
     return 1
 }
 
+piddir=/run/slapd
 slapd=/usr/sbin/slapd
 test -x "$slapd" || exit 0
 
@@ -35,11 +36,16 @@ RETVAL=0
 case "$1" in
   start)
     echo -n "Starting SLAPD: "
+    # Make sure the pidfile directory exists with correct permissions
+    if [ ! -d "$piddir" ]; then
+            mkdir -p "$piddir"
+    fi
+
     # Bump up the open file limit for created daemons
     ulimit -n 4096
-    if [ -f /etc/openldap/schema/cn=config.ldif ]; then
+    if [ -f /etc/ldap/schema/cn=config.ldif ]; then
         start-stop-daemon --start --oknodo --quiet --exec $slapd \
-            -- -F /etc/openldap/schema/
+            -- -F /etc/ldap/schema/
         RETVAL=$?
     else
         start-stop-daemon --start --oknodo --quiet --exec $slapd
@@ -69,10 +75,10 @@ case "$1" in
   stop)
     echo -n "Stopping NSCD: "
     systemctl stop nscd.service
-    rm -f /var/run/nscd/nscd.pid
+    rm -f /run/nscd/nscd.pid
 
     echo -n "Stopping SLAPD: "
-    start-stop-daemon --retry 60 --stop --oknodo --quiet --pidfile /var/run/slapd.pid
+    start-stop-daemon --retry 60 --stop --oknodo --quiet --pidfile /run/slapd/slapd.pid
     RETVAL=$?
     wait_for_proc_stop $slapd 10
     WRETVAL=$?
@@ -81,7 +87,7 @@ case "$1" in
       wait_for_proc_stop $slapd 10
       WRETVAL=$?
     done
-    rm -f /var/run/slapd.pid
+    rm -f /run/slapd/slapd.pid
     echo "."
     ;;
   status)
@@ -95,7 +101,7 @@ case "$1" in
     $0 start
     ;;
   *)
-    echo "Usage: /etc/init.d/openldap {start|stop|status|restart}"
+    echo "Usage: /etc/init.d/slapd {start|stop|status|restart}"
     exit 1
 esac
 
