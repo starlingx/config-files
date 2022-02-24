@@ -8,6 +8,6 @@ Homepage: https://www.starlingx.io
 
 Package: shadow-utils-config
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, login
 Description: StarlingX shadow-utils configuration file
  This package contains configurations for shadow-utils package.
