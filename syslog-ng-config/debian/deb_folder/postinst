@@ -9,4 +9,6 @@ cp /usr/share/starlingx/syslog-ng.service /usr/lib/systemd/system/syslog-ng.serv
 chmod 700 /usr/sbin/fm_event_syslogger
 chmod 755 /usr/sbin/sshlog
 
+systemctl enable syslog-ng.service > /dev/null 2>&1 || :
+
 #DEBHELPER#
