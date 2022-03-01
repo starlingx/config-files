@@ -10,13 +10,12 @@ Documentation=file:///usr/share/doc/openldap-servers/guide.html
 
 [Service]
 Type=forking
-PIDFile=/var/run/slapd.pid
+PIDFile=/run/slapd/slapd.pid
 Environment="SLAPD_URLS=ldap:/// ldapi:///" "SLAPD_OPTIONS="
 EnvironmentFile=/etc/default/slapd
-ExecStartPre=/usr/libexec/openldap/check-config.sh
-ExecStart=/etc/init.d/slapd start
-ExecStop=/etc/init.d/slapd stop
-ExecReload=/etc/init.d/slapd restart
+ExecStart=/etc/init.d/openldap start
+ExecStop=/etc/init.d/openldap stop
+ExecReload=/etc/init.d/openldap restart
 RemainAfterExit=yes
 
 [Install]
