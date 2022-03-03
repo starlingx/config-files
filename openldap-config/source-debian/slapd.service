@@ -10,7 +10,7 @@ Documentation=file:///usr/share/doc/openldap-servers/guide.html
 
 [Service]
 Type=forking
-PIDFile=/run/slapd/slapd.pid
+PIDFile=/run/slapd.pid
 Environment="SLAPD_URLS=ldap:/// ldapi:///" "SLAPD_OPTIONS="
 EnvironmentFile=/etc/default/slapd
 ExecStart=/etc/init.d/openldap start

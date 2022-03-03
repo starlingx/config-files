@@ -27,7 +27,7 @@ function wait_for_proc_stop()
     return 1
 }
 
-piddir=/run/slapd
+piddir=/run
 slapd=/usr/sbin/slapd
 test -x "$slapd" || exit 0
 
@@ -78,7 +78,7 @@ case "$1" in
     rm -f /run/nscd/nscd.pid
 
     echo -n "Stopping SLAPD: "
-    start-stop-daemon --retry 60 --stop --oknodo --quiet --pidfile /run/slapd/slapd.pid
+    start-stop-daemon --retry 60 --stop --oknodo --quiet --pidfile $piddir/slapd.pid
     RETVAL=$?
     wait_for_proc_stop $slapd 10
     WRETVAL=$?
@@ -87,11 +87,11 @@ case "$1" in
       wait_for_proc_stop $slapd 10
       WRETVAL=$?
     done
-    rm -f /run/slapd/slapd.pid
+    rm -f $piddir/slapd.pid
     echo "."
     ;;
   status)
-    status $slapd
+    status_of_proc $slapd
     [ $? -eq 0 ] || exit $?
     systemctl status nscd.service
     [ $? -eq 0 ] || exit $?
@@ -101,7 +101,7 @@ case "$1" in
     $0 start
     ;;
   *)
-    echo "Usage: /etc/init.d/slapd {start|stop|status|restart}"
+    echo "Usage: /etc/init.d/openldap {start|stop|status|restart}"
     exit 1
 esac
 
