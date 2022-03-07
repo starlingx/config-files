@@ -40,6 +40,5 @@ nfs-utils-config
 openldap-config
 logrotate-config
 
-# mlx4-config
-mlx4-config
+# openvswitch-config
 openvswitch-config
