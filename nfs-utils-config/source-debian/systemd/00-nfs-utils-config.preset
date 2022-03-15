@@ -1,0 +1,4 @@
+disable rpc-statd.service
+disable rpc-statd-notify.service
+enable nfs-common.service
+enable nfs-server.service

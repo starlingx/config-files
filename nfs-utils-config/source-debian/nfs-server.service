@@ -1,0 +1,13 @@
+[Unit]
+Description=StarlingX Filesystem Server
+After=network.target nfs-common.service hwclock.service
+Before=ntp.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/etc/init.d/nfsserver start
+ExecStop=/etc/init.d/nfsserver stop
+
+[Install]
+WantedBy=multi-user.target

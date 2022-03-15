@@ -1,0 +1,13 @@
+Source: nfs-utils-config
+Section: admin
+Priority: optional
+Maintainer: StarlingX Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: nfs-utils-config
+Architecture: all
+Depends: ${misc:Depends}, nfs-common, nfs-kernel-server
+Description: StarlingX nfs-utils configuration file
+ Customize configuration and service files of nfs-utils
