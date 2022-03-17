@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+chmod 644 /usr/share/starlingx/lvm.conf
+
+cp /usr/share/starlingx/lvm.conf /etc/lvm/lvm.conf
+
+chmod 644 /etc/lvm/lvm.conf
+
+#DEBHELPER#

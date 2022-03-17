@@ -4,6 +4,7 @@ dhcp-config
 dnsmasq-config
 docker-config
 lighttpd-config
+lvm2-config
 openldap-config
 pam-config
 rabbitmq-server-config

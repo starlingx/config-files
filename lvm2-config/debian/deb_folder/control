@@ -1,0 +1,13 @@
+Source: lvm2-config
+Section: admin
+Priority: optional
+Maintainer: StarlingX Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: lvm2-config
+Architecture: all
+Depends: ${misc:Depends}, lvm2
+Description: StarlingX lvm2 configuration files.
+ Installs StarlingX's default lvm2 configuration files.
