@@ -1,0 +1,5 @@
+nfs-utils-config (1.0-1) unstable; urgency=medium
+
+* Initial release.
+
+-- Adriano Oliveira <adriano.oliveira@windriver.com>  Mon, 14 Mar 2022 13:16:32 -0400

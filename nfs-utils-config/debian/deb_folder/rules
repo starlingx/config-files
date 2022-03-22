@@ -1,0 +1,20 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE = 1
+
+ROOT := $(CURDIR)/debian/tmp
+
+%:
+	dh $@
+
+override_dh_install:
+	install -p -D -m 644 nfsmount.conf ${ROOT}/etc/nfsmount.conf
+	install -p -D -m 755 nfscommon ${ROOT}/etc/init.d/nfscommon
+	install -p -D -m 755 nfsserver ${ROOT}/etc/init.d/nfsserver
+	# nfs-common.service also in nfs-common pkg
+	install -p -D -m 644 nfs-common.service ${ROOT}/etc/systemd/system/nfs-common.service
+	# nfs-server.service also in nfs-kernel-server pkg
+	install -p -D -m 644 nfs-server.service ${ROOT}/etc/systemd/system/nfs-server.service
+	dh_install
+
+override_dh_installsystemd:
+	dh_installsystemd --name nfs-server.service

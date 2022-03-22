@@ -6,6 +6,7 @@ docker-config
 initscripts-config
 lighttpd-config
 lvm2-config
+nfs-utils-config
 openldap-config
 pam-config
 rabbitmq-server-config
