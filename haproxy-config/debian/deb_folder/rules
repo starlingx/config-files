@@ -1,0 +1,12 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE = 1
+
+ROOT := $(CURDIR)/debian/tmp
+
+%:
+	dh $@
+
+override_dh_install:
+	install -p -D -m 755 haproxy.sh ${ROOT}/etc/init.d/haproxy
+	install -p -D -m 644 haproxy.service ${ROOT}/etc/systemd/system/haproxy.service
+	dh_install

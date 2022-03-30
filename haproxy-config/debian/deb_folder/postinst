@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+if test -s /etc/logrotate.d/haproxy ; then
+    echo '#See /etc/logrotate.d/syslog for haproxy rules' > /etc/logrotate.d/haproxy
+fi
+
+#DEBHELPER#
