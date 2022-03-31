@@ -35,6 +35,7 @@ install -m 755 initscript %{buildroot}%{_sysconfdir}/rc.d/init.d/openldap
 install -d -m 740 %{buildroot}%{_sysconfdir}/openldap
 install -m 600 slapd.conf %{buildroot}%{_sysconfdir}/openldap/slapd.conf
 install -m 600 initial_config.ldif %{buildroot}%{_sysconfdir}/openldap/initial_config.ldif
+install -m 600 certs.ldif %{buildroot}%{_sysconfdir}/openldap/certs.ldif
 install -p -D -m 644 slapd.syslog-ng.conf %{buildroot}%{_sysconfdir}/syslog-ng/conf.d/slapd.conf
 
 install -d %{buildroot}%{_datadir}/starlingx
@@ -53,6 +54,7 @@ fi
 %{_sysconfdir}/rc.d/init.d/openldap
 %{_sysconfdir}/openldap/slapd.conf
 %{_sysconfdir}/openldap/initial_config.ldif
+%{_sysconfdir}/openldap/certs.ldif
 %{_sysconfdir}/syslog-ng/conf.d/slapd.conf
 %{local_systemd_system}/slapd.service
 %{_datadir}/starlingx/slapd.sysconfig
