@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mv /usr/share/starlingx/motd /usr/share/starlingx/stx.motd
-cp /usr/share/starlingx/stx.motd /etc/motd
+cp /usr/share/starlingx/base-files/motd /etc/motd
+cp /usr/share/starlingx/base-files/profile /etc/profile
 
 #DEBHELPER#

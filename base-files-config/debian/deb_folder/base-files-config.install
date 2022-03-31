@@ -1,3 +1,4 @@
-motd /usr/share/starlingx/
-prompt.sh /etc/profile.d/
-custom.sh /etc/profile.d/
+custom.sh   /etc/profile.d/
+motd        /usr/share/starlingx/base-files
+profile     /usr/share/starlingx/base-files
+prompt.sh   /etc/profile.d/
