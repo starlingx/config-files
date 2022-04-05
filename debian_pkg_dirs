@@ -6,8 +6,11 @@ docker-config
 initscripts-config
 lighttpd-config
 lvm2-config
+memcached-custom
 nfs-utils-config
+ntp-config
 openldap-config
+openssh-config
 pam-config
 rabbitmq-server-config
 rsync-config
@@ -15,3 +18,4 @@ shadow-utils-config
 sudo-config
 syslog-ng-config
 systemd-config
+util-linux-config
