@@ -3,6 +3,7 @@ debian-release-config
 dhcp-config
 dnsmasq-config
 docker-config
+filesystem-scripts
 initscripts-config
 lighttpd-config
 lvm2-config
