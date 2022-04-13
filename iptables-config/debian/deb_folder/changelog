@@ -1,0 +1,5 @@
+iptables-config (1.0-1) unstable; urgency=medium
+
+  * Initial release
+
+ -- Andre Kantek <AndreFernandoZanella.Kantek@windriver.com>  Wed, 13 Apr 2022 08:50:58 -0300

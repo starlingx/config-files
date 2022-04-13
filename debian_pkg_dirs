@@ -4,6 +4,7 @@ dhcp-config
 dnsmasq-config
 docker-config
 initscripts-config
+iptables-config
 lighttpd-config
 lvm2-config
 memcached-custom

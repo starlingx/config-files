@@ -1,0 +1,2 @@
+iptables.rules usr/share/starlingx
+ip6tables.rules usr/share/starlingx
