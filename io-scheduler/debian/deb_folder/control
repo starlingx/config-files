@@ -1,0 +1,12 @@
+Source: io-scheduler
+Section: admin
+Priority: optional
+Maintainer: StarlingX Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.5.1
+Homepage: https://www.starlingx.io
+
+Package: io-scheduler
+Architecture: any
+Description: StarlingX io-scheduler configuration files
+  StarlingX io-scheduler configuration and tuning.

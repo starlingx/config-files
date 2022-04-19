@@ -6,6 +6,7 @@ docker-config
 filesystem-scripts
 haproxy-config
 initscripts-config
+io-scheduler
 iptables-config
 lighttpd-config
 lvm2-config

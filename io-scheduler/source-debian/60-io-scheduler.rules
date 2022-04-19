@@ -1,0 +1,89 @@
+# This file contains the rules to customize io scheduler.
+
+# Need nodetype environment variable
+IMPORT{file}="/etc/platform/platform.conf"
+
+# 3.10 kernel
+# Heuristics:
+# 'deadline' io-scheduler tuned settings
+# - deadline generally recommended for databases, servers, and SSDs,
+#   and for more deterministic latency
+# - note that read_expire is a key tuning parameter here
+# - the following is recommended by DRBD user guide
+#     front_merges:    0 (from 1)
+#     read_expire:   150 (from 500)
+#     write_expire: 1500 (from 5000)
+#
+# 'cfq' io scheduler tuned settings
+# - recommended for HDD, and fairness (ionice)
+# - the following tuned values greatly improve parallelism,
+#   and performance in large storage environments
+#     slice_idle: 0 (from 8)
+#     quantum:   32 (from 8)
+#
+# 'noop' io scheduler for variants of HW-RAID.
+# - RAID controller will do its own separate scheduling
+#
+# Overall:
+# - Historically we choose 'deadline' for low-latency, SSDs, and local storage;
+#   'cfq' for worker non-sda HDDs, 'noop' for all variants of HW-RAID.
+# - We prefer to guarantee latency more than fairness for all platform services,
+#   especially under extreme read and write load, e.g, when creating/deleting
+#   multiple heat stacks, or running disk intensive operations.
+# - Kubernetes etcd server has better latency with cfq as compared
+#   to deadline even on SSDs.
+# - This setting requires re-evaluation with io-schedulers
+#   (i.e., mq-deadline, bfq, kyber) available in new kernels.
+
+# 5.10 kernel
+# Heuristics:
+# 'none'
+# - Implements a first-in first-out (FIFO) scheduling algorithm. It
+#   merges requests at the generic block layer through a simple last-hit cache.
+# 'mq-deadline'
+# - Attempts to provide a guaranteed latency for requests from the point at
+#   which requests reach the scheduler.
+# - This scheduler is suitable for most use cases, but particularly those in
+#   which the write operations are mostly asynchronous.
+# 'bfq'
+# - Targets desktop systems and interactive tasks.
+# - The bfq scheduler ensures that a single application is never using all of
+#   the bandwidth. In effect, the storage device is always as responsive as if
+#   it was idle. In its default configuration, bfq focuses on delivering the
+#   lowest latency rather than achieving the maximum throughput.
+# - bfq is based on cfq code. It does not grant the disk to each process for
+#   a fixed time slice but assigns a budget measured in number of sectors to the process.
+# - This scheduler is suitable while copying large files and the system does not become
+#   unresponsive in this case.
+# 'kyber'
+# - The scheduler tunes itself to achieve a latency goal by calculating the latencies
+#   of every I/O request submitted to the block I/O layer. You can configure the target
+#   latencies for read, in the case of cache-misses, and synchronous write requests.
+# - This scheduler is suitable for fast devices, for example NVMe, SSD, or other low
+#   latency devices.
+#
+# Overall:
+# - Traditional HDD with a SCSI interface: Use mq-deadline or bfq
+# - High-performance SSD or a CPU-bound system with fast storage: Use none,
+#   especially when running enterprise applications. Alternatively, use kyber.
+# - Desktop or interactive tasks: Use bfq.
+# - Virtual guest: Use mq-deadline. With a host bus adapter (HBA) driver that
+#   is multi-queue capable, use none.
+
+ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", \
+    ATTR{queue/scheduler}="mq-deadline", \
+    ATTR{queue/iosched/front_merges}="0", \
+    ATTR{queue/iosched/read_expire}="150", \
+    ATTR{queue/iosched/write_expire}="1500"
+
+
+ACTION=="add|change", ENV{nodetype}=="controller", SUBSYSTEM=="block", KERNEL=="sd[a-z]", \
+    PROGRAM="/usr/local/bin/is-rootdisk-device.sh %E{DEVNAME}", RESULT=="?*", \
+    ATTR{queue/scheduler}="bfq", \
+    ATTR{queue/iosched/strict_guarantees}="1"
+
+# Set none io scheduler for variants of HW-RAID.
+# HP ProLiant DL360p Gen8; HP ProLiant DL380p Gen8
+ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTRS{raid_level}=="*RAID*", ATTR{queue/scheduler}="none"
+# Dell Inc. PowerEdge R720
+ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTRS{label}=="*RAID*", ATTR{queue/scheduler}="none"
