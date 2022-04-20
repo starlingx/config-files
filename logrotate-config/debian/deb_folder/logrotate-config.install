@@ -1,0 +1,2 @@
+logrotate-cron.d etc/cron.d
+logrotate.conf usr/share/starlingx
