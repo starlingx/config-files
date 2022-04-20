@@ -1,0 +1,3 @@
+etc/systemd/system/tuned.service.d
+etc/tuned/starlingx
+etc/tuned/starlingx-realtime

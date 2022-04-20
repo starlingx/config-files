@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE = 1
+
+ROOT := $(CURDIR)/debian/tmp
+
+%:
+	dh $@
+
+override_dh_install:
+	install -p -D -m 644 tuned-stx-override.conf ${ROOT}/etc/systemd/system/tuned.service.d/tuned-stx-override.conf
+	install -p -D -m 644 tuned.conf ${ROOT}/etc/tuned/starlingx/tuned.conf
+	install -p -D -m 644 tuned-realtime.conf ${ROOT}/etc/tuned/starlingx-realtime/tuned.conf
+	install -p -D -m 644 recommend.conf ${ROOT}/etc/tuned/recommend.conf
+	dh_install
