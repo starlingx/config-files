@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE = 1
+
+ROOT := $(CURDIR)/debian/tmp
+
+%:
+	dh $@
+
+override_dh_install:
+	install -p -D -m 755 uexportfs ${ROOT}/etc/init.d/uexportfs
+	install -p -D -m 755 nfsserver-mgmt ${ROOT}/usr/lib/ocf/resource.d/platform/nfsserver-mgmt
+	install -p -D -m 755 nfs-mount ${ROOT}/usr/bin/nfs-mount
+	dh_install
+
+override_dh_installsystemd:
+	dh_installsystemd --name=uexportfs uexportfs.service

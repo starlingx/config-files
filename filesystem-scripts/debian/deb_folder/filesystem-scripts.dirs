@@ -1,0 +1,4 @@
+etc/init.d
+usr/lib/ocf/resource.d/platform
+usr/bin
+etc/systemd/system
