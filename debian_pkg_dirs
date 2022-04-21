@@ -6,6 +6,7 @@ docker-config
 filesystem-scripts
 haproxy-config
 initscripts-config
+iptables-config
 lighttpd-config
 lvm2-config
 memcached-custom

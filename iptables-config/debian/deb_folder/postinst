@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+cp -f /usr/share/starlingx/iptables.rules /etc/iptables/rules.v4
+chmod 600 /etc/iptables/rules.v4
+cp -f /usr/share/starlingx/ip6tables.rules /etc/iptables/rules.v6
+chmod 600 /etc/iptables/rules.v6
+
+systemctl unmask nftables.service
+systemctl enable nftables.service >/dev/null 2>&1 || :
+
+systemctl unmask iptables.service ip6tables.service
+systemctl enable iptables.service ip6tables.service >/dev/null 2>&1 || :
+
+#DEBHELPER#
