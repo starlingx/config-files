@@ -9,6 +9,7 @@ haproxy-config
 initscripts-config
 io-scheduler
 iptables-config
+iscsi-initiator-utils-config
 lighttpd-config
 logrotate-config
 lvm2-config
