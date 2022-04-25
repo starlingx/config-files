@@ -8,8 +8,7 @@ Before=httpd.service
 After=network-online.target
 
 [Service]
-EnvironmentFile=/etc/sysconfig/memcached
-ExecStart=/usr/bin/memcached -p ${PORT} -u ${USER} -m ${CACHESIZE} -c ${MAXCONN} $OPTIONS
+ExecStart=/usr/share/memcached/scripts/systemd-memcached-wrapper /etc/memcached.conf
 
 # Set up a new file system namespace and mounts private /tmp and /var/tmp directories
 # so this service cannot access the global directories and other processes cannot
