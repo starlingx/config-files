@@ -46,7 +46,7 @@ case "$1" in
     ulimit -n $MAX_FD_COUNT
     if [ -f /etc/openldap/schema/cn=config.ldif ]; then
         start-stop-daemon --start --oknodo --quiet --exec $slapd \
-            -- -h "ldap:/// ldaps:///" -F /etc/openldap/schema/
+            -- -h "ldap:///" -F /etc/openldap/schema/
         RETVAL=$?
     else
         start-stop-daemon --start --oknodo --quiet --exec $slapd
