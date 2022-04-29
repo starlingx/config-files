@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 #export DH_VERBOSE = 1
 
-RELEASE = 21.12
+export RELEASE="$(shell grep SW_VERSION /usr/include/build_info.h | cut -d ' ' -f 3)"
 DEBIAN_ROOT = $(CURDIR)/debian/tmp
 
 %:
