@@ -9,6 +9,7 @@ haproxy-config
 initscripts-config
 iptables-config
 lighttpd-config
+logrotate-config
 lvm2-config
 memcached-custom
 nfs-utils-config

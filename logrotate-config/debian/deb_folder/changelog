@@ -1,0 +1,6 @@
+logrotate-config (1.0-1) unstable; urgency=medium
+
+ * Initial release.
+
+ -- Andrei Suciu <andrei.suciu@windriver.com>  Tue, 12 Apr 2021 01:29:29 -0400
+

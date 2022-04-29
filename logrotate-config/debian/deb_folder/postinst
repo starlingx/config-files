@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+mv /etc/cron.d/logrotate-cron.d /etc/cron.d/logrotate
+mv /etc/cron.daily/logrotate /etc/logrotate.cron
+cp -f /usr/share/starlingx/logrotate.conf /etc/logrotate.conf
+
+chmod 700 /etc/logrotate.cron
+chmod 644 /etc/logrotate.conf
+
+#DEBHELPER#
