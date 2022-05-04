@@ -7,6 +7,7 @@ docker-config
 filesystem-scripts
 haproxy-config
 initscripts-config
+io-scheduler
 iptables-config
 lighttpd-config
 logrotate-config
