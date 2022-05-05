@@ -15,6 +15,7 @@ ntp-config
 openldap-config
 openssh-config
 pam-config
+python-siteconfig
 rabbitmq-server-config
 rsync-config
 shadow-utils-config

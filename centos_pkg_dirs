@@ -30,3 +30,4 @@ openvswitch-config
 multus-config
 tuned-config
 dmesg-config
+python-siteconfig
