@@ -1,0 +1,14 @@
+# install the apport exception handler if available
+try:
+    import apport_python_hook
+except ImportError:
+    pass
+else:
+    apport_python_hook.install()
+
+import site
+
+# A writable location to sys.path for discovery of application
+# plugin modules
+site.addsitedir('/var/stx_app/plugins')
+
