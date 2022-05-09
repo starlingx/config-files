@@ -42,3 +42,6 @@ logrotate-config
 
 # openvswitch-config
 openvswitch-config
+
+#python-siteconfig
+python-siteconfig
