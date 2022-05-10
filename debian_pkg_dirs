@@ -26,4 +26,3 @@ sudo-config
 syslog-ng-config
 systemd-config
 tuned-config
-util-linux-config
