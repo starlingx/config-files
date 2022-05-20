@@ -284,8 +284,12 @@ rabbitmqctl_action() {
             ocf_log debug "RabbitMQ server is running normally"
             return $OCF_SUCCESS
             ;;
-        2)
-            ocf_log debug "RabbitMQ server is not running"
+        # Error code 69 is returned as failed to connect to node and added as a
+        # not running case for proper handling on status command
+        # TODO: this should be revisited at some point to try not to be specific
+        # but generic for any non-zero return to be handled consistently
+        2|69)
+            ocf_log debug "RabbitMQ server is not running: $rc"
             return $OCF_NOT_RUNNING
             ;;
         *)
@@ -358,7 +362,11 @@ rabbit_stop() {
         # return $OCF_SUCCESS
     fi
 
-    $RABBITMQ_CTL stop $RABBITMQ_PID_FILE
+    if [ -f "$RABBITMQ_PID_FILE" ]; then
+        $RABBITMQ_CTL stop "$RABBITMQ_PID_FILE"
+    else
+        $RABBITMQ_CTL stop
+    fi
     rc=$?
 
     if [ "$rc" != 0 ]; then
