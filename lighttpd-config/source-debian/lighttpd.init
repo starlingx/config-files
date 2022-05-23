@@ -54,11 +54,15 @@ start()
     done
 
     echo -n "Mounting scratch filesystem to chroot tmp..."
-    umount /www/tmp >& /dev/null
+    umount /var/www/tmp >& /dev/null
     rm -r /scratch/lighttpd >& /dev/null
     mkdir -p /scratch/lighttpd
-    mount --bind /scratch/lighttpd /www/tmp/
-    chown www /www/tmp/
+    mount --bind /scratch/lighttpd /var/www/tmp/
+    chown www /var/www/tmp/
+
+    echo -n "Initialize chroot dev/null for $DESC..."
+    mkdir -p /var/www/dev
+    mknod -m 666 /var/www/dev/null c 1 3
 
     echo -n "Starting $DESC..."
 
@@ -86,7 +90,7 @@ stop()
     fi
     rm -f $PIDFILE
     echo -n "Unmounting scratch filesystem from chroot tmp..."
-    umount /www/tmp
+    umount /var/www/tmp
 }
 
 status()
