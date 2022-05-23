@@ -3,7 +3,7 @@
 set -e
 
 cp /usr/share/starlingx/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
-cp /usr/share/starlingx/syslog-ng.logrotate /etc/logrotate.d/syslog
+cp /usr/share/starlingx/syslog-ng.logrotate /etc/logrotate.d/syslog-ng
 cp /usr/share/starlingx/syslog-ng.service /usr/lib/systemd/system/syslog-ng.service
 
 chmod 700 /usr/sbin/fm_event_syslogger
