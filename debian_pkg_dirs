@@ -13,6 +13,7 @@ lighttpd-config
 logrotate-config
 lvm2-config
 memcached-custom
+multus-config
 nfs-utils-config
 ntp-config
 openldap-config
