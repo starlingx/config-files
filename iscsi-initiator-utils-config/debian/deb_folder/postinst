@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+# Initial installation
+cp -f /usr/share/starlingx/iscsi/iscsid.conf /etc/iscsi/iscsid.conf
+chmod 0750 /etc/iscsi
+chmod 0640 /etc/iscsi/iscsid.conf
+
+#DEBHELPER#

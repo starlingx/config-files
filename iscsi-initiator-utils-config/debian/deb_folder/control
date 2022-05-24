@@ -1,0 +1,17 @@
+Source: iscsi-initiator-utils-config
+Section: admin
+Priority: optional
+Maintainer: StarlingX Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.5.1
+Homepage: https://www.starlingx.io
+
+Package: iscsi-initiator-utils-config
+Architecture: any
+Depends:
+  ${misc:Depends},
+  open-iscsi,
+  iscsiuio
+Description: StarlingX iscsi-initiator-utils configuration files
+ StarlingX configuration files of iscsi-initiator-utils to system folder.
+

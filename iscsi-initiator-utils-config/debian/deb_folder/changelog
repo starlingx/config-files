@@ -1,0 +1,5 @@
+iscsi-initiator-utils-config (1.0-1) UNRELEASED; urgency=medium
+
+  * Initial release.
+
+ -- Joao Paulo Tavares Musico <joaopaulotavares.musico@windriver.com>  Thu, 21 Apr 2022 17:47:39 +0000
