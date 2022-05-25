@@ -39,13 +39,22 @@ LimitNOFILE=16384
 # Protects against vulnerabilities such as CVE-2016-8655
 RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
 
-# These service parameters are commented out since they are incompatible with
-# Centos 7 and generate warning messages when included.
-# TODO: This was taken directly from Centos and needs to be tested with Debian
+# Denies explicit module loading
 #ProtectKernelModules=true
+
+# If true, kernel variables accessible through /proc/sys/, /sys/, /proc/sysrq-trigger,
+# /proc/latency_stats, /proc/acpi, /proc/timer_stats, /proc/fs and /proc/irq will be
+# made read-only to all processes of the unit
 #ProtectKernelTunables=true
+
+# When set, Linux Control Groups (cgroups(7)) hierarchies accessible through /sys/fs/cgroup/
+# will be made read-only to all processes of the unit
 #ProtectControlGroups=true
+
+# Refuses attempts to enable realtime scheduling in a process of the unit
 #RestrictRealtime=true
+
+# Restricts access to Linux namespace functionality for the processes of this unit
 #RestrictNamespaces=true
 
 Restart=always
