@@ -1,5 +1,6 @@
 audit-config
 base-files-config
+containerd-config
 debian-release-config
 dhcp-config
 dnsmasq-config
