@@ -2,15 +2,13 @@
 
 set -e
 
-cp  /usr/share/starlingx/sysctl.conf /etc/sysctl.conf
+cp  /usr/share/starlingx/initscripts/sysctl.conf /etc/sysctl.conf
 chmod 644 /etc/sysctl.conf
-cp  /usr/share/starlingx/mountnfs.sh /etc/init.d/mountnfs.sh
-chmod 644 /etc/init.d/mountnfs.sh
-cp  /usr/share/starlingx/nsswitch.conf /etc/nsswitch.conf
+cp  /usr/share/starlingx/initscripts/mountnfs /etc/init.d/mountnfs
+chmod 755 /etc/init.d/mountnfs
+cp  /usr/share/starlingx/initscripts/nsswitch.conf /etc/nsswitch.conf
 chmod 644 /etc/nsswitch.conf
-
-systemctl unmask mountnfs.service
-cp  /usr/share/starlingx/mountnfs.service /etc/systemd/system/mountnfs.service
-systemctl enable mountnfs.service > /dev/null 2>&1 || :
+cp  /usr/share/starlingx/initscripts/mount-functions /lib/init/mount-functions.sh
+chmod 644 /lib/init/mount-functions.sh
 
 #DEBHELPER#

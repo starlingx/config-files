@@ -8,6 +8,7 @@ Homepage: https://www.starlingx.io
 
 Package: initscripts-config
 Architecture: all
-Depends: ${misc:Depends}, systemd, procps
+Depends: ${misc:Depends}, systemd, procps, sysvinit-utils
+Breaks: initscripts
 Description: StarlingX initscripts configuration file
  Initialize zeroconf and mountnfs.service and customize sysctl.conf

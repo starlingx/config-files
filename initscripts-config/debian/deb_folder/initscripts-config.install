@@ -1,4 +1,4 @@
-sysctl.conf /usr/share/starlingx
-nsswitch.conf /usr/share/starlingx
-mountnfs.sh /usr/share/starlingx
-mountnfs.service /usr/share/starlingx
+sysctl.conf /usr/share/starlingx/initscripts
+nsswitch.conf /usr/share/starlingx/initscripts
+mountnfs /usr/share/starlingx/initscripts
+mount-functions /usr/share/starlingx/initscripts
