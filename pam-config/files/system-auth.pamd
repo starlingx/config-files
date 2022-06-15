@@ -1,6 +1,6 @@
 #%PAM-1.0
 auth        requisite     pam_access.so
-auth        requisite     pam_tally2.so deny=5 lock_time=15 unlock_time=300 audit
+auth        requisite     pam_tally2.so deny=5 lock_time=3 unlock_time=300 audit
 auth        required      pam_env.so
 auth        sufficient    pam_unix.so try_first_pass
 auth        requisite     pam_succeed_if.so uid >= 1000 quiet_success
