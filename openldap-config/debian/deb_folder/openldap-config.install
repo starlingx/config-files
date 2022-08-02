@@ -5,3 +5,4 @@ slapd.syslog-ng.conf /usr/share/starlingx/openldap
 slapd.sysconfig /usr/share/starlingx/openldap
 slapd.service /etc/systemd/system
 sudo.schema /etc/ldap/schema
+certs.ldif /etc/ldap

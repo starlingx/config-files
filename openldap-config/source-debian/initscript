@@ -45,7 +45,7 @@ case "$1" in
     ulimit -n 4096
     if [ -f /etc/ldap/schema/cn=config.ldif ]; then
         start-stop-daemon --start --oknodo --quiet --exec $slapd \
-            -- -F /etc/ldap/schema/
+            -- -h "ldap:/// ldaps:///" -F /etc/ldap/schema/
         RETVAL=$?
     else
         start-stop-daemon --start --oknodo --quiet --exec $slapd
