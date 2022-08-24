@@ -1,3 +1,4 @@
 docker-stx-override.conf etc/systemd/system/docker.service.d
 docker.logrotate etc/logrotate.d
 docker.conf etc/pmon.d
+docker.conf usr/share/starlingx/pmon.d
