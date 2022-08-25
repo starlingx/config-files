@@ -1,3 +1,2 @@
 usr/lib/tmpfiles.d/iscsi-cache.conf
-systemd/00-iscsi-initiator-utils-config.preset etc/systemd/system-preset
 usr/share/starlingx/iscsi/iscsid.conf

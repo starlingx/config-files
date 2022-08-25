@@ -2,4 +2,3 @@ etc/systemd/system/tuned.service.d/tuned-stx-override.conf
 etc/tuned/recommend.conf
 etc/tuned/starlingx/tuned.conf
 etc/tuned/starlingx-realtime/tuned.conf
-systemd/00-tuned-config.preset etc/systemd/system-preset
