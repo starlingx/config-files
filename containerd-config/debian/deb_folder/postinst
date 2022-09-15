@@ -1,6 +1,0 @@
-#!/bin/sh
-
-cp /etc/pmon.d/containerd-pmon.conf /usr/share/starlingx/pmon.d/containerd.conf
-mv /etc/pmon.d/containerd-pmon.conf /etc/pmon.d/containerd.conf
-
-#DEBHELPER#

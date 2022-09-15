@@ -1,2 +1,2 @@
-containerd-stx-override.conf /etc/systemd/system/containerd.service.d
-containerd-pmon.conf /etc/pmon.d
+etc/systemd/system/containerd.service.d/containerd-stx-override.conf
+usr/share/starlingx/pmon.d/containerd.conf
