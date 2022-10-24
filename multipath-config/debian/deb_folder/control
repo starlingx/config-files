@@ -1,0 +1,13 @@
+Source: multipath-config
+Section: admin
+Priority: optional
+Maintainer: Starlingx Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: multipath-config
+Architecture: all
+Depends: ${misc:Depends}
+Description: Custom multipath configuration
+ Adds a custom multipath.conf file with blacklist exceptions

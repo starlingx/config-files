@@ -1,0 +1,5 @@
+multipath-config (1.0-1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- Matheus Guilhermino <matheus.machadoguilhermino@windriver.com>  Fri, 21 Oct 2022 10:14:29 -0400
