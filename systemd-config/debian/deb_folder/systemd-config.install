@@ -5,3 +5,4 @@ systemd.conf etc/tmpfiles.d
 systemd-udev-settle.service etc/systemd/system/
 tmp.conf etc/tmpfiles.d
 tmp.mount etc/systemd/system
+stx-tmpfiles.conf etc/tmpfiles.d
