@@ -1,0 +1,6 @@
+let g:skip_defaults_vim = 1
+
+set nocompatible
+if has("mouse")
+    set mouse=
+endif
