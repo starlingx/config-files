@@ -270,7 +270,7 @@ rabbit_status() {
 }
 
 rabbit_wait() {
-    rabbitmqctl_action "wait" $1
+    rabbitmqctl_action "wait" "--timeout" "85" $1
 }
 
 rabbitmqctl_action() {
