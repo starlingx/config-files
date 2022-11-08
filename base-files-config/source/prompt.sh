@@ -1,4 +1,4 @@
 if [ "$PS1" ]; then
-    PS1='\h:\w\$ '
+    PS1='[\u@\h]\$ '
 fi
 export PS1
