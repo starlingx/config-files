@@ -70,20 +70,61 @@ IMPORT{file}="/etc/platform/platform.conf"
 # - Virtual guest: Use mq-deadline. With a host bus adapter (HBA) driver that
 #   is multi-queue capable, use none.
 
-ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", \
-    ATTR{queue/scheduler}="mq-deadline", \
-    ATTR{queue/iosched/front_merges}="0", \
-    ATTR{queue/iosched/read_expire}="150", \
-    ATTR{queue/iosched/write_expire}="1500"
+ACTION!="add|change", GOTO="iosched_end"
+SUBSYSTEM!="block", GOTO="iosched_end"
+KERNEL!="sd[a-z]", GOTO="iosched_end"
 
+PROGRAM="/usr/local/bin/is-rootdisk-device.sh %E{DEVNAME}", RESULT=="?*", ENV{rootdisk}="1"
 
-ACTION=="add|change", ENV{nodetype}=="controller", SUBSYSTEM=="block", KERNEL=="sd[a-z]", \
-    PROGRAM="/usr/local/bin/is-rootdisk-device.sh %E{DEVNAME}", RESULT=="?*", \
-    ATTR{queue/scheduler}="bfq", \
-    ATTR{queue/iosched/strict_guarantees}="1"
+# === === === ===
+# Check the I/O scheduler settings are correct.
+# === === === ===
+
+ATTRS{raid_level}=="*RAID*", \
+    ATTR{queue/scheduler}=="*\[none\]*", \
+    GOTO="iosched_end"
+
+ATTRS{label}=="*RAID*", \
+    ATTR{queue/scheduler}=="*\[none\]*", \
+    GOTO="iosched_end"
+
+ENV{nodetype}=="controller", \
+    ENV{rootdisk}=="1", \
+    ATTR{queue/scheduler}=="*\[bfq\]*", \
+    ATTR{queue/iosched/strict_guarantees}=="1", \
+    GOTO="iosched_end"
+
+ATTR{queue/scheduler}=="*\[mq-deadline\]*", \
+    ATTR{queue/iosched/front_merges}=="0", \
+    ATTR{queue/iosched/read_expire}=="150", \
+    ATTR{queue/iosched/write_expire}=="1500", \
+    GOTO="iosched_end"
+
+# === === === ===
+# I/O scheduler settings are not as expected, need to be defined.
+# === === === ===
 
 # Set none io scheduler for variants of HW-RAID.
 # HP ProLiant DL360p Gen8; HP ProLiant DL380p Gen8
-ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTRS{raid_level}=="*RAID*", ATTR{queue/scheduler}="none"
+ATTRS{raid_level}=="*RAID*", \
+    ATTR{queue/scheduler}="none", \
+    GOTO="iosched_end"
+
 # Dell Inc. PowerEdge R720
-ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTRS{label}=="*RAID*", ATTR{queue/scheduler}="none"
+ATTRS{label}=="*RAID*", \
+    ATTR{queue/scheduler}="none", \
+    GOTO="iosched_end"
+
+ENV{nodetype}=="controller", \
+    ENV{rootdisk}=="1", \
+    ATTR{queue/scheduler}="bfq", \
+    ATTR{queue/iosched/strict_guarantees}="1", \
+    GOTO="iosched_end"
+
+ATTR{queue/scheduler}="mq-deadline", \
+    ATTR{queue/iosched/front_merges}="0", \
+    ATTR{queue/iosched/read_expire}="150", \
+    ATTR{queue/iosched/write_expire}="1500", \
+    GOTO="iosched_end"
+
+LABEL="iosched_end"
