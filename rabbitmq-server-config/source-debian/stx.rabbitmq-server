@@ -306,10 +306,6 @@ rabbit_start() {
         return $OCF_SUCCESS
     fi
 
-    # Call rabbit_stop, just in case something's still running
-    ocf_log info "Calling rabbit_stop ahead of rabbit_start"
-    rabbit_stop
-
     export_vars
 
     # Increase the maximum number of file descriptors that can be open at
