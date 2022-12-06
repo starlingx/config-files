@@ -2,3 +2,4 @@ custom.sh   /etc/profile.d/
 motd        /usr/share/starlingx/base-files
 profile     /usr/share/starlingx/base-files
 prompt.sh   /etc/profile.d/
+vimrc.local /etc/vim/
