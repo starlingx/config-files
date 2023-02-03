@@ -1,0 +1,5 @@
+openvswitch-config (1.0.0-1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- Thales Elero Cervi <ThalesElero.Cervi@windriver.com>  Fri, 03 Feb 2023 10:00:00 -0400

@@ -1,0 +1,14 @@
+Source: openvswitch-config
+Section: admin
+Priority: optional
+Maintainer: Wind River <info@windriver.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.5.1
+
+Package: openvswitch-config
+Section: admin
+Depends:
+ openvswitch-switch | openvswitch-switch-dpdk
+ ${misc:Depends}
+Architecture: any
+Description: StarlingX openvswitch configuration file

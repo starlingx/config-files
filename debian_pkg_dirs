@@ -20,6 +20,7 @@ nfs-utils-config
 ntp-config
 openldap-config
 openssh-config
+openvswitch-config
 pam-config
 python-siteconfig
 rabbitmq-server-config

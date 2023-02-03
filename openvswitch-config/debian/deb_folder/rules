@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+# Copyright (C) 2023 Wind River Systems, Inc
+#
+
+# export DH_VERBOSE = 1
+
+export APP_NAME=openvswitch-config
+export PBR_VERSION=1.0.0-1
+export ROOT=debian/tmp
+export SRC_DIR=files
+export SYSCONF_DIR=$(ROOT)/etc
+export SYSCONF_OVS=$(SYSCONF_DIR)/openvswitch
+export DATA_DIR=$(ROOT)/usr/share
+export DATA_STX=$(DATA_DIR)/starlingx
+
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	install -d -m 0755 $(SYSCONF_OVS)
+	install -m 0644 $(SRC_DIR)/ovsdb-server.pmon.conf $(SYSCONF_OVS)
+	install -m 0644 $(SRC_DIR)/ovs-vswitchd.pmon.conf $(SYSCONF_OVS)
+	install -d $(DATA_STX)
+	install -m 0640 $(SRC_DIR)/etc_logrotate.d_openvswitch $(DATA_STX)

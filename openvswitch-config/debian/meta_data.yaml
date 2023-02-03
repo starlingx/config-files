@@ -1,0 +1,9 @@
+---
+debname: openvswitch-config
+debver: 1.0.0
+src_path: ${MY_REPO}/stx/config-files/openvswitch-config
+revision:
+  dist: $STX_DIST
+  PKG_GITREVCOUNT: true
+  SRC_GITREVCOUNT:
+    SRC_BASE_SRCREV: 400d88272da416b49fe555e319e076804234dd5d
