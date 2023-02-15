@@ -48,6 +48,9 @@ lighttpd-config
 #memcached-custom
 memcached-custom
 
+#multipath-config
+multipath-config
+
 #multus-config
 multus-config
 
