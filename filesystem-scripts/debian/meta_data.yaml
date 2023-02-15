@@ -5,3 +5,5 @@ src_path: source-debian
 revision:
   dist: $STX_DIST
   PKG_GITREVCOUNT: true
+  SRC_GITREVCOUNT:
+    SRC_BASE_SRCREV: b99cafae76a37d943375686e6df22a23d5e65679
