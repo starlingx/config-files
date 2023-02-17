@@ -66,6 +66,9 @@ openldap-config
 #openssh-config
 openssh-config
 
+#openvswitch-config
+openvswitch-config
+
 #pam-config
 pam-config
 
