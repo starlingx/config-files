@@ -75,7 +75,7 @@
 /var/log/collect.log
 /var/log/ldapscripts.log
 /var/log/tuned/tuned.log
-/var/log/armada/*.log
+/var/log/flux/*.log
 {
         nodateext
         size 10M
