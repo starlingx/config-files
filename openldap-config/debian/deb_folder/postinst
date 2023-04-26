@@ -6,6 +6,7 @@ cp /usr/share/starlingx/openldap/initscript /etc/init.d/openldap
 cp /usr/share/starlingx/openldap/slapd.conf /etc/ldap/slapd.conf
 cp /usr/share/starlingx/openldap/initial_config.ldif /etc/ldap/initial_config.ldif
 cp /usr/share/starlingx/openldap/slapd.syslog-ng.conf /etc/syslog-ng/conf.d/slapd.conf
+cp /usr/share/starlingx/openldap/slapd.logrotate /etc/logrotate.d
 cp /usr/share/starlingx/openldap/slapd.sysconfig /etc/default/slapd
 
 chmod 755 /etc/init.d/slapd
@@ -13,6 +14,7 @@ chmod 740 /etc/ldap/
 chmod 600 /etc/ldap/slapd.conf
 chmod 600 /etc/ldap/initial_config.ldif
 chmod 644 /etc/syslog-ng/conf.d/slapd.conf
+chmod 644 /etc/logrotate.d/slapd.logrotate
 chmod 644 /etc/systemd/system/slapd.service
 chmod 644 /etc/default/slapd
 
