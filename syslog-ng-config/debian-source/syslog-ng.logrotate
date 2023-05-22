@@ -42,6 +42,7 @@
         endscript
 }
 
+/var/log/rss-memory.log
 /var/log/collectd.log
 {
         nodateext
