@@ -139,6 +139,7 @@ Subsystem       sftp    /usr/lib/openssh/sftp-server
 #       PermitTTY no
 #       ForceCommand cvs server
 DenyUsers admin secadmin operator
+DenyGroups denyssh
 # Filtered cipher, MAC and key exchange algorithm list, defaults can be
 # obtained by ssh -Q cipher, ssh -Q mac and ssh -Q kex
 # TODO (aning): once openssh is updated to 7.5, an explicit exclusion list
