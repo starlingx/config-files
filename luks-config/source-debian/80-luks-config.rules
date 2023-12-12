@@ -1,0 +1,5 @@
+# This file contains the rule to set custom identifier VAULT_TYPE attribute to
+# "luks_encrypted_vault" for any LUKS-encrypted device, whose DM_UUID attribute
+# value matches any characters that come after "CRYPT-LUKS2"
+
+KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_UUID}=="CRYPT-LUKS2*", ENV{VAULT_TYPE}="luks_encrypted_vault"

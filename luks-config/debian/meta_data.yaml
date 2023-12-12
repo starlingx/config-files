@@ -1,0 +1,9 @@
+---
+debname: luks-config
+debver: 1.0-1
+src_path: source-debian
+revision:
+  dist: $STX_DIST
+  PKG_GITREVCOUNT: true
+  SRC_GITREVCOUNT:
+    SRC_BASE_SRCREV: b6c7d16f1c10e833118e30e6860cbd8071757eb0

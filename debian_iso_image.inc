@@ -36,6 +36,9 @@ iptables-config
 #iscsi-initiator-utils-config
 iscsi-initiator-utils-config
 
+#luks-config
+luks-config
+
 # lvm2-config
 lvm2-config
 

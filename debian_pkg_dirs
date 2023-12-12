@@ -13,6 +13,7 @@ iptables-config
 iscsi-initiator-utils-config
 lighttpd-config
 logrotate-config
+luks-config
 lvm2-config
 memcached-custom
 multipath-config
