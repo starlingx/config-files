@@ -15,44 +15,54 @@ DAEMON=/usr/sbin/haproxy
 NAME=haproxy
 DESC="HA-Proxy TCP/HTTP reverse proxy"
 PIDFILE="/var/run/$NAME.pid"
-OPTS="-D -f /etc/haproxy/haproxy.cfg -p $PIDFILE"
+LOGFILE="/var/log/$NAME.log"
+OPTS="-D -V -f /etc/haproxy/haproxy.cfg -p $PIDFILE"
 RETVAL=0
+TAG="HA-PROXY INIT.D"
+
+haproxy_log() {
+    echo "$@"
+    logger -t ${TAG} -s $@ >> $LOGFILE 2>&1
+}
 
 start() {
     if [ -e $PIDFILE ]; then
         PIDDIR=/proc/$(cat $PIDFILE)
         if [ -d $PIDDIR ]; then
-            echo "$DESC already running."
+            haproxy_log "$DESC already running"
             return
         else
-            echo "Removing stale PID file $PIDFILE"
+            haproxy_log "Removing stale PID file $PIDFILE"
             rm -f $PIDFILE
         fi
     fi
 
-    echo -n "Starting $NAME: "
+    haproxy_log "Starting $DESC..."
 
-    start-stop-daemon --start --pidfile $PIDFILE -x "$DAEMON" -- $OPTS
+    start-stop-daemon --verbose --start --pidfile $PIDFILE -x "$DAEMON" -- $OPTS >> $LOGFILE 2>&1
     RETVAL=$?
     if [ $RETVAL -eq 0 ]; then
-        echo "done."
+        haproxy_log "$NAME started"
     else
-        echo "failed."
+        haproxy_log "$NAME failed to start RETVAL=$RETVAL"
     fi
 }
 
 stop() {
+
     if [ ! -e $PIDFILE ]; then
+        haproxy_log "$DESC already stopped"
         return
     fi
 
-    echo -n "Stopping $DESC..."
+    haproxy_log "Stopping $DESC..."
 
-    start-stop-daemon --stop --quiet --retry 3 --oknodo --pidfile $PIDFILE -x "$DAEMON"
+    start-stop-daemon --verbose --stop --retry 3 --oknodo --pidfile $PIDFILE -x "$DAEMON"
     if [ -n "`pidof $DAEMON`" ] ; then
         pkill -KILL -f $DAEMON
     fi
-    echo "done."
+    haproxy_log "$NAME stopped"
+
     rm -f $PIDFILE
     rm -f /var/lock/subsys/$NAME
 }
@@ -73,7 +83,7 @@ status() {
 }
 
 check() {
-    /usr/sbin/$NAME -c -q -V -f /etc/$NAME/$NAME.cfg
+    /usr/sbin/$NAME -c -V -f /etc/$NAME/$NAME.cfg
 }
 
 # See how we were called.
