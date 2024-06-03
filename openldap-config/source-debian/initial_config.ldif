@@ -46,12 +46,13 @@ objectClass: pwdPolicy
 objectClass: pwdPolicyChecker
 cn: default
 pwdAttribute: userPassword
-pwdMaxAge: 0
+# pwdMaxAge is valued in seconds, so 7776000 second means 90 days
+pwdMaxAge: 7776000
 pwdExpireWarning: 432000
-pwdInHistory: 2
+pwdInHistory: 5
 pwdCheckModule: check_password.so
 pwdCheckQuality: 1
-pwdMinLength: 7
+pwdMinLength: 12
 pwdMaxFailure: 5
 pwdLockout: TRUE
 pwdLockoutDuration: 300
