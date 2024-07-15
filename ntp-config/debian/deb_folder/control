@@ -12,6 +12,5 @@ Depends:
   ${misc:Depends},
   libnet-ntp-perl,
   ntp,
-  ntpdate
 Description: StarlingX ntp Configuration File
  Initalizes file ntp.conf with default value and adds options for ntpd.
