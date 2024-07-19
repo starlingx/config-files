@@ -420,6 +420,8 @@ fi
 
 export_vars
 
+start=$(date +%s%N)
+ocf_log info "action:${__OCF_ACTION}:start-at:${start: 0:-6} ms"
 case $__OCF_ACTION in
     start)
         rabbit_start
@@ -438,5 +440,10 @@ case $__OCF_ACTION in
         exit $OCF_ERR_UNIMPLEMENTED
         ;;
 esac
+rc=$?
+end=$(date +%s%N)
+ocf_log info "action:${__OCF_ACTION}:end-at:${end: 0:-6} ms"
+diff=$((end-start))
+ocf_log info "action:${__OCF_ACTION}:took:${diff: 0:-6} ms"
 
-exit $?
+exit $rc
