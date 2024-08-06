@@ -3,6 +3,8 @@ DAEMON=/usr/sbin/dnsmasq
 NAME=dnsmasq
 DESC="DNS forwarder and DHCP server"
 PIDFILE="/var/run/dnsmasq.pid"
+DNSMASQ_TIMEOUT=10
+CTRL1_FQDN_FLAG="/etc/platform/.upgrade_do_not_use_fqdn"
 
 test -f $DAEMON || exit 0
 
@@ -13,26 +15,33 @@ case "$1" in
 	start-stop-daemon -S -x $DAEMON --pidfile $PIDFILE -- $ARGS
 	echo "done."
 	# DNS is just ready when it can resolve controller.internal
-	let -i UNTIL=$SECONDS+20
-	domain="controller.internal"
-	ipv4_result=""
-	ipv6_result=""
-	while [ $UNTIL -ge $SECONDS ]
-	do
-		ipv4_result=$(dig +short ${domain})
-		ipv6_result=$(dig AAAA +short ${domain})
-		# Check to see if DNS is ready
-		if [ -n "${ipv4_result}" ] || [ -n "${ipv6_result}" ];
+	# but ignore this test during controller-1 upgrade since
+	# the dnsmasq.addn_hosts was created by previous code without
+	# the controller.internal entry
+	# TODO<fcorream> remove the flag CTRL1_FQDN_FLAG for future
+	# releases
+	if [ ! -f "${CTRL1_FQDN_FLAG}" ]; then
+		let -i UNTIL=$SECONDS+$DNSMASQ_TIMEOUT
+		domain="controller.internal"
+		ipv4_result=""
+		ipv6_result=""
+		while [ $UNTIL -ge $SECONDS ]
+		do
+			ipv4_result=$(dig +short ${domain})
+			ipv6_result=$(dig AAAA +short ${domain})
+			# Check to see if DNS is ready
+			if [ -n "${ipv4_result}" ] || [ -n "${ipv6_result}" ];
+			then
+				echo "$NAME is operational."
+				break
+			fi
+			# Check every second
+			sleep 1
+		done
+		if [ -z "${ipv4_result}" ] && [ -z "${ipv6_result}" ];
 		then
-			echo "$NAME is operational."
-			break
+			echo "$NAME did not provide name resolution in $DNSMASQ_TIMEOUT seconds after starting. Continuing...."
 		fi
-		# Check every second
-		sleep 1
-	done
-	if [ -z "${ipv4_result}" ] && [ -z "${ipv6_result}" ];
-	then
-		echo "$NAME did not provide name resolution in 20s after starting. Continuing...."
 	fi
 	echo -n "Refresh hosts cache"
 	nscd -i hosts
