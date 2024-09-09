@@ -6,6 +6,9 @@
 #
 . /etc/init.d/functions
 
+# The maximum number of open file descriptors allowed.
+MAX_FD_COUNT=10256
+
 ################################################################################
 # Wait for a process to stop running.
 #
@@ -42,7 +45,7 @@ case "$1" in
     fi
 
     # Bump up the open file limit for created daemons
-    ulimit -n 4096
+    ulimit -n $MAX_FD_COUNT
     if [ -f /etc/ldap/schema/cn=config.ldif ]; then
         start-stop-daemon --start --oknodo --quiet --exec $slapd \
             -- -h "ldap:/// ldaps:///" -F /etc/ldap/schema/
