@@ -24,7 +24,6 @@
 /var/log/sysinv-api.log
 /var/log/nfv-vim-api.log
 /var/log/nfv-vim-webserver.log
-/var/log/keystone/*.log
 /var/log/horizon.log
 /var/log/barbican/barbican-keystone-listener.log
 /var/log/barbican/barbican-worker.log
@@ -39,6 +38,22 @@
         sharedscripts
         postrotate
 		 systemctl reload syslog-ng > /dev/null 2>&1 || true
+        endscript
+}
+
+/var/log/keystone/*.log
+{
+        nodateext
+        size 20M
+        start 1
+        rotate 20
+        copytruncate
+        missingok
+        notifempty
+        compress
+        sharedscripts
+        postrotate
+                 systemctl reload syslog-ng > /dev/null 2>&1 || true
         endscript
 }
 
