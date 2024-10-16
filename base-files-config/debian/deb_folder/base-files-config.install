@@ -1,5 +1,7 @@
-custom.sh                          /etc/profile.d/
-motd                               /usr/share/starlingx/base-files
-profile                            /usr/share/starlingx/base-files
-prompt.sh                          /etc/profile.d/
-vimrc.local                        /etc/vim/
+etc/profile.d/custom.sh
+etc/profile.d/prompt.sh
+etc/systemd/system/cron.service.d/cron-cpu-shares.conf
+etc/systemd/system/rsync.service.d/rsync-cpu-shares.conf
+etc/vim/vimrc.local
+usr/share/starlingx/base-files/motd
+usr/share/starlingx/base-files/profile

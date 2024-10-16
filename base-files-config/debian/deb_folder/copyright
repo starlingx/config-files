@@ -3,7 +3,7 @@ Upstream-Name: base-files-config
 Source: https://opendev.org/starlingx/config-files/
 
 Files: *
-Copyright: (c) 2013-2021 Wind River Systems, Inc
+Copyright: (c) 2013-2024 Wind River Systems, Inc
 License: Apache-2
 
 Files: debian/*

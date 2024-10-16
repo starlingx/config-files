@@ -3,5 +3,17 @@
 # output every command that modifies files on the build system.
 #export DH_VERBOSE = 1
 
+ROOT := $(CURDIR)/debian/tmp
+
 %:
 	dh $@
+
+override_dh_install:
+	install -p -D -m 644 custom.sh             ${ROOT}/etc/profile.d/custom.sh
+	install -p -D -m 644 prompt.sh             ${ROOT}/etc/profile.d/prompt.sh
+	install -p -D -m 644 cron-cpu-shares.conf  ${ROOT}/etc/systemd/system/cron.service.d/cron-cpu-shares.conf
+	install -p -D -m 644 rsync-cpu-shares.conf ${ROOT}/etc/systemd/system/rsync.service.d/rsync-cpu-shares.conf
+	install -p -D -m 644 vimrc.local           ${ROOT}/etc/vim/vimrc.local
+	install -p -D -m 644 motd                  ${ROOT}/usr/share/starlingx/base-files/motd
+	install -p -D -m 644 profile               ${ROOT}/usr/share/starlingx/base-files/profile
+	dh_install

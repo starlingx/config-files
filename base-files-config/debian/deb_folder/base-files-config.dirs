@@ -1,0 +1,5 @@
+etc/profile.d/
+etc/systemd/system/cron.service.d
+etc/systemd/system/rsync.service.d
+etc/vim
+usr/share/starlingx/base-files

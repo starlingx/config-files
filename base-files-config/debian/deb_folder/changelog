@@ -1,3 +1,9 @@
+base-files-config (1.0-2) unstable; urgency=medium
+
+  * Added systemd DropIn config overrides for cron.service, rsync.service
+
+ -- Jim Gauld <James.Gauld@windriver.com>  Thu, 21 Nov 2024 08:35:05 -0400
+
 base-files-config (1.0-1) unstable; urgency=medium
 
   * Initial release
