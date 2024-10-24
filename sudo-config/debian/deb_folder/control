@@ -10,4 +10,5 @@ Package: sudo-config
 Architecture: all
 Depends: ${misc:Depends}, sudo
 Description: StarlingX sudo configuration file
+ Installs sysadmin and logs file on sudoers.d directory.
  Installs sysadmin and sys_admin file on sudoers.d directory.

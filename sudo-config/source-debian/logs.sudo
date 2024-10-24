@@ -1,0 +1,17 @@
+# User alias specification
+User_Alias      ALL_SYS_GROUPS = %sys_admin, %sys_configurator, %sys_operator, %sys_reader
+
+# Cmnd alias specification
+Cmnd_Alias      CAT_LOGS = /usr/bin/ls /var/log/*, /usr/bin/cat /var/log/*.log
+Cmnd_Alias      GUNZIP_LOGS = /usr/bin/gunzip /var/log/*.gz, /usr/bin/cat /var/log/*.log.[0-9]*
+Cmnd_Alias      VIM_LOGS = /usr/bin/vim /var/log/*.log, /usr/bin/vim /var/log/*.log.[0-9]*
+Cmnd_Alias      LESS_LOGS = /usr/bin/less /var/log/*.log, /usr/bin/less /var/log/*.log.[0-9]*
+
+# Allow members of all sys_* groups to execute selected commands
+ALL_SYS_GROUPS          ALL=(root:root) NOPASSWD: CAT_LOGS, VIM_LOGS, LESS_LOGS
+# Allow members of all sys_admin groups to execute selected commands
+%sys_admin              ALL=(root:root) NOPASSWD: GUNZIP_LOGS
+# Allow members of all sys_configurator groups to execute selected commands
+%sys_configurator       ALL=(root:root) NOPASSWD: GUNZIP_LOGS
+# Allow members of all sys_operator groups to execute selected commands
+%sys_operator           ALL=(root:root) NOPASSWD: GUNZIP_LOGS
