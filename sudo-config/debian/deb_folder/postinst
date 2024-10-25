@@ -3,7 +3,9 @@
 set -e
 
 cp /usr/share/starlingx/sysadmin.sudo /etc/sudoers.d/sysadmin
+cp /usr/share/starlingx/sys_admin.sudo /etc/sudoers.d/sys_admin
 
 chmod 440 /etc/sudoers.d/sysadmin
+chmod 440 /etc/sudoers.d/sys_admin
 
 #DEBHELPER#
