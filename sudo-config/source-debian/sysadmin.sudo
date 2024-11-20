@@ -10,3 +10,5 @@ sysadmin ALL=(root) NOPASSWD: /usr/local/sbin/collect
 
 Defaults lecture=never, secure_path=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 Defaults passprompt="Password: "
+Defaults use_pty
+Defaults logfile="/var/log/sudo.log"
