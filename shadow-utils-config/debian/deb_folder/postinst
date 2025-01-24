@@ -3,5 +3,6 @@
 set -e
 
 cp /usr/share/starlingx/login.defs /etc/login.defs
+cp /usr/share/starlingx/useradd /etc/default/useradd
 
 #DEBHELPER#
