@@ -11,6 +11,7 @@ ROOT := $(CURDIR)/debian/tmp
 override_dh_install:
 	install -p -D -m 644 custom.sh             ${ROOT}/etc/profile.d/custom.sh
 	install -p -D -m 644 prompt.sh             ${ROOT}/etc/profile.d/prompt.sh
+	install -p -D -m 644 umask.sh              ${ROOT}/etc/profile.d/umask.sh
 	install -p -D -m 644 cron-cpu-shares.conf  ${ROOT}/etc/systemd/system/cron.service.d/cron-cpu-shares.conf
 	install -p -D -m 644 rsync-cpu-shares.conf ${ROOT}/etc/systemd/system/rsync.service.d/rsync-cpu-shares.conf
 	install -p -D -m 644 vimrc.local           ${ROOT}/etc/vim/vimrc.local
