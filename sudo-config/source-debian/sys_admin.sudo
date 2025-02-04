@@ -1,0 +1,9 @@
+##
+## sys_admin group restrictions
+##
+
+# Cmnd alias specification
+Cmnd_Alias BLOCKED_COMMANDS = /usr/bin/su, /usr/sbin/userdel, /usr/bin/rm /etc/kubernetes/admin.conf
+
+# Restrict members of sys_admin from executing blocked commands
+%sys_admin  ALL=(ALL:ALL) ALL, !BLOCKED_COMMANDS
