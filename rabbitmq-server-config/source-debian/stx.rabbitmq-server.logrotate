@@ -6,8 +6,10 @@
         delaycompress
         notifempty
         sharedscripts
+        create 0640 root root
         postrotate
             pgrep beam.smp >/dev/null && /usr/sbin/rabbitmqctl -q rotate_logs
+            find /var/log/rabbitmq -type f -name "*.log" -exec chmod 0640 {} \;
             true
         endscript
 }
