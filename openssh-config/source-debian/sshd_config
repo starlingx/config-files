@@ -34,7 +34,7 @@ LogLevel INFO
 
 # Authentication:
 
-LoginGraceTime 1m
+LoginGraceTime 60
 PermitRootLogin no
 #StrictModes yes
 MaxAuthTries 4
@@ -110,12 +110,12 @@ UsePrivilegeSeparation sandbox
 PermitUserEnvironment no
 Compression no
 ClientAliveInterval 15
-ClientAliveCountMax 4
+ClientAliveCountMax 3
 #ShowPatchLevel no
 # Make SSH connect faster on bootup
 UseDNS no
 #PidFile /var/run/sshd.pid
-#MaxStartups 10:30:100
+MaxStartups 10:30:60
 #PermitTunnel no
 #ChrootDirectory none
 #VersionAddendum none

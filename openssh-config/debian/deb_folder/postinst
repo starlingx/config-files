@@ -5,5 +5,5 @@ set -e
 cp -f /usr/share/starlingx/ssh_config /etc/ssh/ssh_config
 cp -f /usr/share/starlingx/sshd_config /etc/ssh/sshd_config
 cp -f /usr/share/starlingx/ssh.service /lib/systemd/system/ssh.service
-
+chmod go-rwx /etc/ssh/sshd_config
 #DEBHELPER#
