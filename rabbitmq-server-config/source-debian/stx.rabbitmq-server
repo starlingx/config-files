@@ -369,7 +369,7 @@ rabbit_stop() {
         ocf_log err "rabbitmq-server stop command failed: $RABBITMQ_CTL stop, $rc"
     fi
 
-    process_info=$(ss -ntlp | grep -w 5672 | awk '{print $6}' | sed 1q)
+    process_info=$(ss -Hntlp '( sport = 5672 )' | awk '{print $6}')
 
     if [ ! -z "${process_info}" ]; then
         ocf_log err "rabbitmq-server stop command executed: '$RABBITMQ_CTL stop $RABBITMQ_PID_FILE', but port is still in use by ${process_info}."
