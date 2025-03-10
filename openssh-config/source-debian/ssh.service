@@ -16,19 +16,6 @@ Type=notify
 RuntimeDirectory=sshd
 RuntimeDirectoryMode=0755
 
-# cgroup performance engineering
-# - ssh (and tools run by users) do not provide latency critical service
-# - specific tools can easily take 100% cpu and do significant IO
-# - set 1/8th default share
-# - set 100% cpu quota (1 logical cpu)
-# - set lower IO priority (effective only with 'bfq' scheduler)
-CPUShares=128
-CPUQuota=100%
-CPUQuotaPeriodSec=10ms
-Nice=19
-IOSchedulingClass=best-effort
-IOSchedulingPriority=7
-
 [Install]
 WantedBy=multi-user.target
 Alias=sshd.service

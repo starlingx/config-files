@@ -1,6 +1,6 @@
 ---
 debname: base-files-config
-debver: 1.0-2
+debver: 1.0-3
 src_path: source
 revision:
   dist: $STX_DIST
