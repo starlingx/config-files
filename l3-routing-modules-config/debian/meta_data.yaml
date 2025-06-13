@@ -1,0 +1,9 @@
+---
+debname: l3-routing-modules-config
+debver: 1.0-1
+src_path: source-debian
+revision:
+  dist: $STX_DIST
+  PKG_GITREVCOUNT: true
+  SRC_GITREVCOUNT:
+    SRC_BASE_SRCREV: 86721aef23eadf4a69ed2ad8e5884f488533134e
