@@ -1,0 +1,8 @@
+[Unit]
+Description=StarlingX utility services slice
+Before=slices.target
+
+[Slice]
+MemoryAccounting=true
+CPUAccounting=true
+CPUShares=128

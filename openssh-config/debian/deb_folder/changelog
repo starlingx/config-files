@@ -1,3 +1,9 @@
+openssh-config (1.0-2) unstable; urgency=medium
+
+  * Add ssh.service to utils.slice.
+
+ -- Alyson Deives Pereira <Alyson.DeivesPereira@windriver.com>  Tue, 01 Apr 2025 11:00:00 -0400
+
 openssh-config (1.0-1) unstable; urgency=medium
 
   * Initial release.

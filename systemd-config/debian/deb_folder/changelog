@@ -1,3 +1,11 @@
+systemd-config (1.0-2) unstable; urgency=medium
+
+  * Create top-level slice utils.slice for utility services with default CPUShares=128
+  * Move systemd-udevd.service to utils.slice
+  * Configure init.scope with CPUShares=128
+
+ -- Alyson Deives Pereira <Alyson.DeivesPereira@windriver.com>  Fri, 04 Apr 2025 11:24:58 -0300
+
 systemd-config (1.0-1) unstable; urgency=medium
 
   * Initial release

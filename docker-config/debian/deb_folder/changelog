@@ -1,3 +1,9 @@
+docker-config (1.0-2) unstable; urgency=medium
+
+  * Added docker.service to utils.slice
+
+ -- Alyson Deives Pereira <Alyson.DeivesPereira@windriver.com>  Tue, 01 Apr 2025 00:00:00 +1000
+
 docker-config (1.0-1) unstable; urgency=medium
 
   * Initial release

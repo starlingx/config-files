@@ -1,3 +1,9 @@
+base-files-config (1.0-3) unstable; urgency=medium
+
+  * Added cron.service and rsync.service to utils.slice
+
+ -- Alyson Deives Pereira <Alyson.DeivesPereira@windriver.com>  Tue, 21 Nov 2024 08:35:05 -0400
+
 base-files-config (1.0-2) unstable; urgency=medium
 
   * Added systemd DropIn config overrides for cron.service, rsync.service

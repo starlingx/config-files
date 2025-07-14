@@ -1,3 +1,4 @@
 ssh_config /usr/share/starlingx
 sshd_config /usr/share/starlingx
 ssh.service /usr/share/starlingx
+ssh-cpu-shares.conf /usr/share/starlingx
