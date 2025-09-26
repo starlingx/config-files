@@ -60,5 +60,9 @@ RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
 Restart=always
 RestartSec=10
 
+# syscall filtering
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
 [Install]
 WantedBy=multi-user.target
