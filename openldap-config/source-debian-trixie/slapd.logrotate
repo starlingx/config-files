@@ -1,0 +1,19 @@
+#
+# Copyright (c) 2023 Wind River Systems, Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+/var/log/slapd.log
+{
+  nodateext
+  size 10M
+  start 1
+  rotate 20
+  missingok
+  notifempty
+  compress
+  sharedscripts
+  postrotate
+    systemctl reload syslog-ng > /dev/null 2>&1 || true
+  endscript
+}

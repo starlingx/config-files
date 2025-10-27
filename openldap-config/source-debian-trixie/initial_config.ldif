@@ -46,12 +46,18 @@ objectClass: pwdPolicy
 objectClass: pwdPolicyChecker
 cn: default
 pwdAttribute: userPassword
-pwdMaxAge: 0
+# pwdMaxAge is valued in seconds, so 7776000 second means 90 days
+pwdMaxAge: 7776000
 pwdExpireWarning: 432000
-pwdInHistory: 2
-pwdCheckModule: check_password.so
+pwdInHistory: 5
+# TODO (mdecastr)
+# Include ppm module matching removed check_password rules
+# Old file: https://opendev.org/starlingx/integ/src/branch/master/ldap/openldap/debian/files/check_password.conf
+#pwdUseCheckModule: TRUE
+#pwdCheckModule: /usr/local/lib/ppm.so
+#pwdCheckModuleArg:: XXXX
 pwdCheckQuality: 1
-pwdMinLength: 7
+pwdMinLength: 12
 pwdMaxFailure: 5
 pwdLockout: TRUE
 pwdLockoutDuration: 300
