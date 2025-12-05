@@ -1,0 +1,9 @@
+initscript /usr/share/starlingx/openldap
+slapd.conf /usr/share/starlingx/openldap
+initial_config.ldif /usr/share/starlingx/openldap
+slapd.syslog-ng.conf /usr/share/starlingx/openldap
+slapd.logrotate /usr/share/starlingx/openldap
+slapd.sysconfig /usr/share/starlingx/openldap
+slapd.service /etc/systemd/system
+sudo.schema /etc/ldap/schema
+certs.ldif /etc/ldap

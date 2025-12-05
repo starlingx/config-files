@@ -1,0 +1,11 @@
+60-persistent-storage.rules usr/lib/udev/rules.d
+journald.conf usr/share/starlingx
+init.scope-cpu-shares.conf etc/systemd/system/init.scope.d/
+kubernetes.conf etc/tmpfiles.d
+systemd.conf etc/tmpfiles.d
+systemd-udev-settle.service etc/systemd/system/
+systemd-udevd-cpu-shares.conf etc/systemd/system/systemd-udevd.service.d/
+tmp.conf etc/tmpfiles.d
+tmp.mount etc/systemd/system
+stx-tmpfiles.conf etc/tmpfiles.d
+utils.slice etc/systemd/system/
