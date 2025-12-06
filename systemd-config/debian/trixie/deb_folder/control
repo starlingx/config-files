@@ -9,5 +9,6 @@ Homepage: https://www.starlingx.io
 Package: systemd-config
 Architecture: any
 Depends: ${misc:Depends}, systemd
+Replaces: udev
 Description: StarlingX configuration files - systemd-config
  Package of systemd-config to system folder.
