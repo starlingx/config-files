@@ -11,6 +11,6 @@ Architecture: all
 Depends:
   ${misc:Depends},
   libnet-ntp-perl,
-  ntp,
+  ntpsec,
 Description: StarlingX ntp Configuration File
  Initalizes file ntp.conf with default value and adds options for ntpd.
