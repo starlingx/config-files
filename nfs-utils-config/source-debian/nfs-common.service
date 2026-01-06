@@ -6,6 +6,8 @@ Before=nfs-server.service mountnfs.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
+ExecCondition=/bin/test -f /etc/platform/platform.conf
+ExecCondition=/bin/bash -c '! grep -q "^system_mode=simplex" /etc/platform/platform.conf'
 ExecStart=/etc/init.d/nfscommon start
 ExecStop=/etc/init.d/nfscommon stop
 

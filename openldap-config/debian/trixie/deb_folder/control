@@ -1,0 +1,13 @@
+Source: openldap-config
+Section: admin
+Priority: optional
+Maintainer: StarlingX Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: openldap-config
+Architecture: any
+Depends: ${misc:Depends}, slapd, syslog-ng
+Description: Config file named openldap-config
+ StarlingX openldap configuration files

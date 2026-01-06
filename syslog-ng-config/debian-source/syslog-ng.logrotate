@@ -58,6 +58,9 @@
 }
 
 /var/log/rss-memory.log
+/var/log/iotop.log
+/var/log/schedtop.log
+/var/log/top.log
 /var/log/collectd.log
 {
         nodateext

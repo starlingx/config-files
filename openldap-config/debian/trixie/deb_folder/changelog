@@ -1,0 +1,5 @@
+openldap-config (1.0-1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- Yan Kabuki <Yan.HiroakiKabuki@windriver.com> Thu, 30 Sep 2021 09:32:54 -0400

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+cp -f /usr/share/starlingx/l3-routing-modules.conf /etc/modules-load.d/
+chmod 600 /etc/modules-load.d/l3-routing-modules.conf
+
+#DEBHELPER#

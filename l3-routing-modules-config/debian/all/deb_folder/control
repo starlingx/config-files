@@ -1,0 +1,13 @@
+Source: l3-routing-modules-config
+Section: admin
+Priority: optional
+Maintainer: StarlingX Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: l3-routing-modules-config
+Architecture: any
+Depends: ${misc:Depends}
+Description: StarlingX configuration files - l3-routing-modules-config
+ Package of l3-routing-modules-config to system folder.

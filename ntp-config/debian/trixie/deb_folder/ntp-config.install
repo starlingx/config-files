@@ -1,0 +1,2 @@
+ntpd.sysconfig usr/share/starlingx
+ntp.conf usr/share/starlingx
