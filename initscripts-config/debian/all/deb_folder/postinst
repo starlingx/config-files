@@ -2,8 +2,19 @@
 
 set -e
 
-cp  /usr/share/starlingx/initscripts/sysctl.conf /etc/sysctl.conf
+# Create an empty sysctl.conf to avoid conflicts with /etc/sysctl.d config files
+: > /etc/sysctl.conf
 chmod 644 /etc/sysctl.conf
+
+# Placing a file in the '/usr/share/starlingx/usm/etc' directory
+# will override the ostree /etc 3-way merge during major release upgrades
+cp /etc/sysctl.conf /usr/share/starlingx/usm/etc/sysctl.conf
+
+# Instead of /etc/sysctl.conf write the default sysctl settings to /etc/sysctl.d/98-sysctl.conf
+# Allows for a custom zzz-custom-user.conf to override default settings if needed
+cp  /usr/share/starlingx/initscripts/sysctl.conf /etc/sysctl.d/98-sysctl.conf
+chmod 644 /etc/sysctl.d/98-sysctl.conf
+
 cp  /usr/share/starlingx/initscripts/mountnfs /etc/init.d/mountnfs
 chmod 755 /etc/init.d/mountnfs
 cp  /usr/share/starlingx/initscripts/nsswitch.conf /etc/nsswitch.conf
