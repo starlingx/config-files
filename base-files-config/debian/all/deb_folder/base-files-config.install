@@ -3,6 +3,7 @@ etc/profile.d/prompt.sh
 etc/profile.d/umask.sh
 etc/systemd/system/cron.service.d/cron-cpu-shares.conf
 etc/systemd/system/rsync.service.d/rsync-cpu-shares.conf
+etc/systemd/system/cron.service.d/cron-stx-override.conf
 etc/vim/vimrc.local
 usr/share/starlingx/base-files/motd
 usr/share/starlingx/base-files/profile
