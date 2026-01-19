@@ -11,6 +11,10 @@ ExecReload=/bin/kill -HUP $MAINPID
 StandardOutput=null
 Restart=on-failure
 
+# syscall filtering
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
 [Install]
 WantedBy=multi-user.target
 Alias=syslog.service
