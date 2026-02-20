@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE = 1
+
+ROOT := $(CURDIR)/debian/tmp
+
+%:
+	dh $@
+
+override_dh_install:
+	install -p -D -m 644 61-consistent-net-names.rules ${ROOT}/etc/udev/rules.d/61-consistent-net-names.rules
+	dh_install
