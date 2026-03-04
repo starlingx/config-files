@@ -1,0 +1,13 @@
+Source: sysctl-config
+Section: admin
+Priority: optional
+Maintainer: Starlingx Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.4.1
+Homepage: https://www.starlingx.io
+
+Package: sysctl-config
+Architecture: any
+Depends: ${misc:Depends}, linux-sysctl-defaults
+Description: StarlingX sysctl configuration file
+ Package for sysctl kernel parameters customizations

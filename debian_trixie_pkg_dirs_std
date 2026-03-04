@@ -30,6 +30,7 @@ rabbitmq-server-config
 rsync-config
 shadow-utils-config
 sudo-config
+sysctl-config
 syslog-ng-config
 systemd-config
 tuned-config

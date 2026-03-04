@@ -93,6 +93,9 @@ rsync-config
 #sudo-config
 sudo-config
 
+#sysctl-config
+sysctl-config
+
 #syslog-ng-config
 syslog-ng-config
 

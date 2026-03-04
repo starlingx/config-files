@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+cp  /usr/share/starlingx/initscripts/mountnfs /etc/init.d/mountnfs
+chmod 755 /etc/init.d/mountnfs
+cp  /usr/share/starlingx/initscripts/nsswitch.conf /etc/nsswitch.conf
+chmod 644 /etc/nsswitch.conf
+cp  /usr/share/starlingx/initscripts/mount-functions /lib/init/mount-functions.sh
+chmod 644 /lib/init/mount-functions.sh
+
+#DEBHELPER#

@@ -1,0 +1,3 @@
+nsswitch.conf /usr/share/starlingx/initscripts
+mountnfs /usr/share/starlingx/initscripts
+mount-functions /usr/share/starlingx/initscripts

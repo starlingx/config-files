@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+# Write the default sysctl settings to /etc/sysctl.d/98-sysctl.conf
+# Allows for a custom zzz-custom-user.conf to override default settings if needed
+cp  /usr/share/starlingx/initscripts/98-sysctl.conf /etc/sysctl.d/
+chmod 644 /etc/sysctl.d/98-sysctl.conf
+
+# Placing a file in the '/usr/share/starlingx/usm/etc' directory
+# will override the ostree /etc 3-way merge during major release upgrades
+mkdir /usr/share/starlingx/usm/etc/sysctl.d
+cp /etc/sysctl.d/98-sysctl.conf /usr/share/starlingx/usm/etc/sysctl.d/
+
+#DEBHELPER#
