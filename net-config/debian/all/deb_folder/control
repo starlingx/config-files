@@ -1,0 +1,12 @@
+Source: net-config
+Section: admin
+Priority: optional
+Maintainer: StarlingX Developers <starlingx-discuss@lists.starlingx.io>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.5.1
+Homepage: https://www.starlingx.io
+
+Package: net-config
+Architecture: any
+Description: StarlingX net-config configuration files
+  StarlingX net-config configuration and tuning.

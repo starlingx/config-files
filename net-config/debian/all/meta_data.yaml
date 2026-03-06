@@ -1,0 +1,9 @@
+---
+debname: net-config
+debver: 1.0-1
+src_path: source-debian
+revision:
+  dist: $STX_DIST
+  PKG_GITREVCOUNT: true
+  SRC_GITREVCOUNT:
+    SRC_BASE_SRCREV: 7ae69ae95f82c1e75daaa45687dec37527e5554a

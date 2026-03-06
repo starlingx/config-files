@@ -1,0 +1,12 @@
+SUBSYSTEM=="net", TEST=="/sys/class/dmi/id/sys_vendor", PROGRAM=="/bin/cat /sys/class/dmi/id/sys_vendor", \
+  ENV{DMI_SYS_VENDOR}="%c"
+
+# Intel(R) Ethernet Connection E825-C
+ACTION=="add", SUBSYSTEM=="net", SUBSYSTEMS=="pci", ENV{DMI_SYS_VENDOR}=="HPE", \
+  ATTRS{vendor}=="0x8086", ATTRS{device}=="0x579c|0x579d|0x579e|0x579f", \
+  IMPORT{builtin}="net_id", NAME="$env{ID_NET_NAME_PATH}"
+
+# Intel(R) Ethernet Controller E830-CC
+ACTION=="add", SUBSYSTEM=="net", SUBSYSTEMS=="pci", ENV{DMI_SYS_VENDOR}=="HPE", \
+  ATTRS{vendor}=="0x8086", ATTRS{device}=="0x12d1|0x12d2|0x12d3|0x12d5|0x12d8|0x12da|0x12dc|0x12dd|0x12de", \
+  IMPORT{builtin}="net_id", NAME="$env{ID_NET_NAME_PATH}"

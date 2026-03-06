@@ -60,6 +60,9 @@ multipath-config
 #multus-config
 multus-config
 
+#net-config
+net-config
+
 #nfs-utils-config
 nfs-utils-config
 
