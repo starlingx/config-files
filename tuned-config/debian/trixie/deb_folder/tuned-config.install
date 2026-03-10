@@ -1,0 +1,4 @@
+etc/systemd/system/tuned.service.d/tuned-stx-override.conf
+etc/tuned/recommend.conf
+etc/tuned/profiles/starlingx/tuned.conf
+etc/tuned/profiles/starlingx-realtime/tuned.conf
