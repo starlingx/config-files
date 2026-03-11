@@ -6,3 +6,4 @@ Before=slices.target
 MemoryAccounting=true
 CPUAccounting=true
 CPUShares=128
+CPUWeight=12
