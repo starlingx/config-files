@@ -28,34 +28,43 @@ EOF
 function get_proto()
 {
     local host=$1
+    local proto_v4="udp"
+    local proto_v6="udp6"
+
+    # Check Debian version for TCP protocol requirement
+    DEBIAN_VERSION=$(cat /etc/debian_version 2>/dev/null | cut -d. -f1)
+    if [ "${DEBIAN_VERSION}" = "13" ]; then
+        proto_v4="tcp"
+        proto_v6="tcp6"
+    fi
 
     # Check /etc/hosts for the hostname
     local ipaddr=$(cat /etc/hosts | awk -v host=$host '$2 == host {print $1}')
     if [[ "$ipaddr" =~ ^[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*$ ]]
     then
-        echo "udp"
+        echo "$proto_v4"
         return
     fi
     if [[ "$ipaddr" =~ ^[0-9a-z]*\:[0-9a-z\:]*$ ]]
     then
-        echo "udp6"
+        echo "$proto_v6"
         return
     fi
     # Try the DNS query
     ipaddr=$(dig +short ANY $host)
     if [[ "$ipaddr" =~ ^[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*$ ]]
     then
-        echo "udp"
+        echo "$proto_v4"
         return
     fi
     if [[ "$ipaddr" =~ ^[0-9a-z]*\:[0-9a-z\:]*$ ]]
     then
-        echo "udp6"
+        echo "$proto_v6"
         return
     fi
 
-    # Use default of udp to avoid invalid option
-    echo "udp"
+    # Use default protocol to avoid invalid option
+    echo "$proto_v4"
     return
 }
 
