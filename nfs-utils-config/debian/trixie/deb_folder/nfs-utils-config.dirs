@@ -1,0 +1,4 @@
+etc/init.d
+etc/nfs.conf.d
+etc/systemd/system
+usr/share/starlingx

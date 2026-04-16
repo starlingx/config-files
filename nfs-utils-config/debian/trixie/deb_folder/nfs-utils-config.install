@@ -1,0 +1,6 @@
+etc/init.d/nfscommon
+etc/init.d/nfsserver
+etc/nfsmount.conf
+etc/nfs.conf.d/nfs-stx.conf
+etc/systemd/system/nfs-common.service
+etc/systemd/system/nfs-server.service
