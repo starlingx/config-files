@@ -4,4 +4,7 @@ set -e
 
 cp /usr/share/starlingx/journald.conf /etc/systemd
 
+# Remove old ntp entries not installed by ntpsec
+sed -i '/^#\ ntp/,+2d' /etc/tmpfiles.d/stx-tmpfiles.conf || exit 1
+
 #DEBHELPER#

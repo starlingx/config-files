@@ -13,4 +13,4 @@ Depends:
   libnet-ntp-perl,
   ntpsec,
 Description: StarlingX ntp Configuration File
- Initalizes file ntp.conf with default value and adds options for ntpd.
+ Initializes ntpsec config files with default values for StarlingX

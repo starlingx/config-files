@@ -1,2 +1,2 @@
-ntpd.sysconfig usr/share/starlingx
+default.ntpsec usr/share/starlingx
 ntp.conf usr/share/starlingx
