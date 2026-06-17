@@ -5,6 +5,9 @@
 # This file is sourced by /sbin/dhclient-script.
 #
 
+# Prevent DHCP from overriding system hostname
+unset new_host_name
+
 # Select wrs-install-uuid from ipv4 or ipv6
 if [ -n "$new_dhcp6_wrs_install_uuid" ]; then
   wrs_install_uuid=$new_dhcp6_wrs_install_uuid
