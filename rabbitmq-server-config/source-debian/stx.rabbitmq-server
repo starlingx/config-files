@@ -266,7 +266,23 @@ rabbit_status() {
         exit $OCF_NOT_RUNNING;
     fi
 
-    rabbitmqctl_action "status"
+    # Use a TCP connection check on the AMQP port instead of rabbitmqctl
+    # to avoid spawning a full Erlang VM on every monitor cycle (~1.3s on
+    # Erlang/OTP 27). Port 5672 binds to RABBITMQ_NODE_IP_ADDRESS (the mgmt
+    # floating IP), which works for both IPv4 and IPv6 systems.
+    # Reference: RabbitMQ Cluster Operator uses TCP port check as readinessProbe.
+    local amqp_port="${RABBITMQ_NODE_PORT:-5672}"
+    local ip="${RABBITMQ_NODE_IP_ADDRESS:-127.0.0.1}"
+    if echo "$ip" | grep -q ':'; then
+        timeout 5 nc -6 -z "$ip" "$amqp_port" 2>/dev/null
+    else
+        timeout 5 nc -z "$ip" "$amqp_port" 2>/dev/null
+    fi
+    if [ $? -ne 0 ]; then
+        ocf_log err "RabbitMQ AMQP port ${ip}:${amqp_port} is not responding"
+        return $OCF_NOT_RUNNING
+    fi
+    return $OCF_SUCCESS
 }
 
 rabbit_wait() {
