@@ -56,7 +56,7 @@ pwdCheckQuality: 1
 pwdMinLength: 12
 pwdMaxFailure: 5
 pwdLockout: TRUE
-pwdLockoutDuration: 300
+pwdLockoutDuration: 900
 pwdFailureCountInterval: 0
 pwdMustChange: TRUE
 pwdAllowUserChange: TRUE
