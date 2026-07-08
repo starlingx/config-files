@@ -1,0 +1,8 @@
+common-auth /usr/share/starlingx
+common-password /usr/share/starlingx
+common-session /usr/share/starlingx
+common-session-noninteractive /usr/share/starlingx
+common-account /usr/share/starlingx
+faillock.conf /usr/share/starlingx
+pwquality.conf /usr/share/starlingx
+su /usr/share/starlingx

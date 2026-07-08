@@ -10,9 +10,11 @@
 # here are the per-package modules (the "Primary" block)
 # auth	[success=1 default=ignore]	pam_unix.so nullok_secure
 # auth  sufficient                      pam_ldap.so use_first_pass
-auth    required                        pam_tally2.so deny=5 unlock_time=300 audit
+auth    requisite                       pam_faillock.so preauth
 auth    [success=2 default=ignore]      pam_unix.so nullok_secure
-auth    [success=1 default=ignore]      pam_ldap.so use_first_pass debug
+auth    [success=1 default=ignore]      pam_sss.so use_first_pass
+auth    [default=die]                   pam_faillock.so authfail
+auth    sufficient                      pam_faillock.so authsucc
 # here's the fallback if no module succeeds
 auth    requisite                       pam_deny.so
 # prime the stack with a positive return value if there isn't one already;

@@ -14,9 +14,8 @@
 #
 
 # here are the per-package modules (the "Primary" block)
-account     required                                            pam_tally2.so
-account     [success=2 new_authtok_reqd=done default=ignore]    pam_unix.so
-account     [success=1 new_authtok_reqd=done default=ignore]    pam_ldap.so
+account     required                                            pam_faillock.so
+account     [success=1 new_authtok_reqd=done default=ignore]    pam_unix.so
 # here's the fallback if no module succeeds
 account     requisite                                           pam_deny.so
 # prime the stack with a positive return value if there isn't one already;
@@ -25,3 +24,5 @@ account     requisite                                           pam_deny.so
 account     required                                            pam_permit.so
 # and here are more per-package modules (the "Additional" block)
 # end of pam-auth-update config
+account     sufficient                                          pam_localuser.so
+account     [default=bad success=ok user_unknown=ignore new_authtok_reqd=bad]        pam_sss.so

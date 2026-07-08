@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+rm -f /etc/security/faillock.conf
+dpkg-divert --remove --package pam-config --rename \
+    /etc/security/faillock.conf
+
+#DEBHELPER#

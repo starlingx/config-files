@@ -1,0 +1,5 @@
+pam-config (1.0-1) unstable; urgency=medium
+
+  * Initial release.
+
+  -- Yan Kabuki <Yan.HiroakiKabuki@windriver.com>  Thu, 6 Oct 2021 15:09:43 -0400

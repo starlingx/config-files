@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+cp /usr/share/starlingx/common-account /etc/pam.d/common-account
+cp /usr/share/starlingx/common-auth /etc/pam.d/common-auth
+cp /usr/share/starlingx/common-password /etc/pam.d/common-password
+cp /usr/share/starlingx/common-session /etc/pam.d/common-session
+cp /usr/share/starlingx/common-session-noninteractive /etc/pam.d/common-session-noninteractive
+cp /usr/share/starlingx/faillock.conf /etc/security/faillock.conf
+mkdir -p /etc/security/pwquality.conf.d
+cp /usr/share/starlingx/pwquality.conf /etc/security/pwquality.conf.d/50-pwquality.conf
+cp /usr/share/starlingx/su /etc/pam.d/su
+
+#DEBHELPER#

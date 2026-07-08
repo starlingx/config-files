@@ -1,0 +1,10 @@
+---
+debname: pam-config
+debver: 1.0-1
+src_path: debian/trixie/source
+revision:
+  stx_patch: 13
+  dist: $STX_DIST
+  PKG_GITREVCOUNT: true
+  SRC_GITREVCOUNT:
+    SRC_BASE_SRCREV: 07e5e434897d1fcb42d703512930c1affe8e7829
