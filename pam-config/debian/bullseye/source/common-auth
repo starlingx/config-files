@@ -10,13 +10,16 @@
 # here are the per-package modules (the "Primary" block)
 # auth	[success=1 default=ignore]	pam_unix.so nullok_secure
 # auth  sufficient                      pam_ldap.so use_first_pass
+auth    [success=1 default=ignore]      pam_succeed_if.so user = sysadmin quiet
 auth    requisite                       pam_faillock.so preauth
-auth    [success=2 default=ignore]      pam_unix.so nullok_secure
-auth    [success=1 default=ignore]      pam_sss.so use_first_pass
+auth    [success=5 default=ignore]      pam_unix.so nullok_secure
+auth    [success=4 default=ignore]      pam_sss.so use_first_pass
+auth    [success=1 default=ignore]      pam_succeed_if.so user = sysadmin quiet
 auth    [default=die]                   pam_faillock.so authfail
-auth    sufficient                      pam_faillock.so authsucc
 # here's the fallback if no module succeeds
 auth    requisite                       pam_deny.so
+auth    [success=1 default=ignore]      pam_succeed_if.so user = sysadmin quiet
+auth    sufficient                      pam_faillock.so authsucc
 # prime the stack with a positive return value if there isn't one already;
 # this avoids us returning an error just because nothing sets a success code
 # since the modules above will each just jump around
