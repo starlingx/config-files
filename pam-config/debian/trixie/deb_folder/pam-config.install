@@ -6,3 +6,4 @@ common-account /usr/share/starlingx
 faillock.conf /usr/share/starlingx
 pwquality.conf /usr/share/starlingx
 su /usr/share/starlingx
+check-faillock.sh /usr/share/starlingx
