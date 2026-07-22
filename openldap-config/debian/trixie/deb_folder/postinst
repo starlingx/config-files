@@ -18,4 +18,11 @@ chmod 644 /etc/logrotate.d/slapd.logrotate
 chmod 644 /etc/systemd/system/slapd.service
 chmod 644 /etc/default/slapd
 
+# Remove 'ldap' from sudoers nsswitch line injected by sudo-ldap postinst.
+# STX uses SSSD ('sss') for sudo rule lookups from LDAP, not the sudo-ldap
+# direct LDAP client. The direct 'ldap' entry is redundant and causes a
+# 3-second connection timeout on every sudo call when slapd is not running
+# (e.g. during restore and early unlock).
+sed -i 's/^sudoers:.*/sudoers: files sss/' /etc/nsswitch.conf
+
 #DEBHELPER#
