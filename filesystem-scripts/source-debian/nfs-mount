@@ -38,32 +38,24 @@ function get_proto()
         proto_v6="tcp6"
     fi
 
-    # Check /etc/hosts for the hostname
-    local ipaddr=$(cat /etc/hosts | awk -v host=$host '$2 == host {print $1}')
-    if [[ "$ipaddr" =~ ^[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*$ ]]
-    then
-        echo "$proto_v4"
-        return
-    fi
-    if [[ "$ipaddr" =~ ^[0-9a-z]*\:[0-9a-z\:]*$ ]]
-    then
+    # Use getent hosts to resolve via NSS (/etc/hosts then DNS) and let the
+    # system's nsswitch.conf order determine the address family preference.
+    # A short timeout is used since the hostname is expected to be in /etc/hosts
+    # and should resolve instantly, avoiding a potentially slow DNS lookup.
+    # The result is checked for ':' to detect IPv6, excluding ::ffff: prefixed
+    # addresses which are IPv4-mapped IPv6 addresses and must be treated as IPv4.
+    local ipaddr
+    ipaddr=$(timeout 5 getent hosts "$host" | awk '{print $1; exit}')
+    if [[ -n "$ipaddr" && "$ipaddr" == *:* && "$ipaddr" != ::ffff:* ]]; then
         echo "$proto_v6"
         return
     fi
-    # Try the DNS query
-    ipaddr=$(dig +short ANY $host)
-    if [[ "$ipaddr" =~ ^[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*$ ]]
-    then
+    if [[ -n "$ipaddr" ]]; then
         echo "$proto_v4"
-        return
-    fi
-    if [[ "$ipaddr" =~ ^[0-9a-z]*\:[0-9a-z\:]*$ ]]
-    then
-        echo "$proto_v6"
         return
     fi
 
-    # Use default protocol to avoid invalid option
+    # Host not resolvable, fall back to IPv4 protocol as default
     echo "$proto_v4"
     return
 }
@@ -87,4 +79,3 @@ declare -i rw_size=1024
 declare DEFAULT_OPTS="timeo=$timeo,proto=$proto,vers=3,rsize=$rw_size,wsize=$rw_size"
 
 exec mount -t nfs -o $DEFAULT_OPTS $1 $2
-
