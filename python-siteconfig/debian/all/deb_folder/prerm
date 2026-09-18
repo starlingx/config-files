@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+
+# Symmetric to postinst: on package removal, restore the distribution-
+# provided sitecustomize.py that postinst moved aside, so removing this
+# package does not leave the StarlingX hook behind.
+#
+# prerm also runs on upgrade ("prerm upgrade <version>"); in that case the
+# new package's postinst re-installs the hook, so restoring here would only
+# churn the file. Restrict the restore to the "remove" case so upgrades are
+# left untouched and the .original backup is preserved for the real removal.
+PYVER=$(python3 -c 'import sys; print("python%d.%d" % sys.version_info[:2])')
+SITEDIR="/etc/${PYVER}"
+
+if [ "$1" = "remove" ] && \
+   [ -f "${SITEDIR}/sitecustomize.py.original" ]; then
+    mv "${SITEDIR}/sitecustomize.py.original" "${SITEDIR}/sitecustomize.py"
+fi
+
+#DEBHELPER#

@@ -1,3 +1,12 @@
+python-siteconfig (1.0-2) unstable; urgency=medium
+
+  * Install and activate the sitecustomize hook under the platform's
+    default python3 version instead of a hardcoded python3.9, so
+    application plugin discovery works on releases running a newer
+    Python. Restore the original sitecustomize.py on package removal.
+
+ -- Sridhar Kumar Ettkepalli <sridharkumar.ettkepalli@windriver.com>  Thu, 18 Sep 2026 12:00:00 +0000
+
 python-siteconfig (1.0-1) unstable; urgency=medium
 
   * Initial release

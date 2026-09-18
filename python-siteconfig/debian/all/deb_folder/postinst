@@ -1,6 +1,25 @@
 #!/bin/sh
+set -e
 
-mv /etc/python3.9/sitecustomize.py /etc/python3.9/sitecustomize.py.original
-cp /etc/python3.9/sitecustomize.py.stx /etc/python3.9/sitecustomize.py
+# Resolve the running interpreter's site-config dir at install time rather
+# than hardcoding a version. python3 is always present; deriving the version
+# from it keeps this correct across releases (3.13 on Trixie, 3.9 on older
+# releases) without an extra runtime dependency such as py3versions.
+PYVER=$(python3 -c 'import sys; print("python%d.%d" % sys.version_info[:2])')
+SITEDIR="/etc/${PYVER}"
+STX_HOOK="/usr/share/python-siteconfig/sitecustomize.py.stx"
+
+mkdir -p "${SITEDIR}"
+
+# Back up the distribution-provided sitecustomize.py before installing the
+# StarlingX hook, but only if a backup does not already exist. On a
+# re-install or package upgrade this postinst runs again while the file is
+# already our hook; guarding on the absence of the .original file keeps the
+# genuine stock backup intact instead of overwriting it with our hook.
+if [ -f "${SITEDIR}/sitecustomize.py" ] && \
+   [ ! -f "${SITEDIR}/sitecustomize.py.original" ]; then
+    mv "${SITEDIR}/sitecustomize.py" "${SITEDIR}/sitecustomize.py.original"
+fi
+cp "${STX_HOOK}" "${SITEDIR}/sitecustomize.py"
 
 #DEBHELPER#

@@ -1,7 +1,12 @@
 #!/usr/bin/make -f
-# See debhelper(7) (uncomment to enable)
-# output every command that modifies files on the build system.
 #export DH_VERBOSE = 1
+
+ROOT := $(CURDIR)/debian/tmp
 
 %:
 	dh $@
+
+override_dh_install:
+	install -p -D -m 644 sitecustomize.py.stx \
+		${ROOT}/usr/share/python-siteconfig/sitecustomize.py.stx
+	dh_install
